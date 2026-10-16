@@ -1036,7 +1036,7 @@
 
 .tooltip-content {
   position: absolute;
-  bottom: calc(100% + 8px);
+  top: calc(100% + 8px);
   left: 50%;
   transform: translateX(-50%);
   background-color: var(--color-bg-elevated);
@@ -1055,6 +1055,18 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+.nav-actions .tooltip-content {
+  left: auto;
+  right: 0;
+  transform: none;
+}
+
+.export-actions .tooltip-content,
+.export-group .tooltip-content {
+  top: auto;
+  bottom: calc(100% + 8px);
 }
 
 .has-tooltip:hover .tooltip-content,
