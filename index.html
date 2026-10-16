@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mahi Desai | AI/ML & Full-Stack Engineer | Portfolio</title>
+  <meta name="description" content="Portfolio of Mahi Desai, Computer Engineering student at VJTI Mumbai specializing in Deep Learning, Generative AI, and Full-Stack Development.">
+  <meta name="author" content="Mahi Desai">
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:title" content="Mahi Desai | AI/ML & Full-Stack Engineer">
+  <meta property="og:description" content="Building intelligent systems, from DNA embeddings to job-matching platforms. Third-year Computer Engineering student at VJTI Mumbai.">
+  <meta property="og:type" content="website">
+
+  <!-- Core CSS -->
+  <link rel="stylesheet" href="assets/css/variables.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/layout.css">
+  <link rel="stylesheet" href="assets/css/components.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+</head>
+<body>
+  <!-- [HCI - Accessibility WCAG 2.1 AA]: Skip link for screen reader and keyboard navigation -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- [HCI - Nielsen #1: Visibility of System Status]: Reading Depth Progress Bar -->
+  <div class="reading-progress-bar" id="reading-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" aria-label="Reading progress"></div>
+
+  <!-- [HCI - Nielsen #1 & Hick's Law]: Sticky Navigation with max 6 core destinations -->
+  <header class="site-header" role="banner">
+    <div class="container nav-container">
+      <a href="#home" class="brand-link" aria-label="Mahi Desai home page">
+        <span>Mahi Desai</span>
+        <span class="brand-badge">VJTI • AI/ML</span>
+      </a>
+
+      <!-- Navigation Links (Strictly 6 core destinations per Hick's Law) -->
+      <nav id="site-nav" role="navigation" aria-label="Main navigation">
+        <ul class="nav-menu" id="nav-menu">
+          <li><a href="#about" class="nav-link">About</a></li>
+          <li><a href="#academic" class="nav-link">Academic</a></li>
+          <li><a href="#experience" class="nav-link">Experience &amp; Activities</a></li>
+          <li><a href="#projects" class="nav-link">Projects</a></li>
+          <li><a href="#blog" class="nav-link">Blog</a></li>
+          <li><a href="#contact" class="nav-link">Contact</a></li>
+          <li><a href="#sus" class="nav-link" style="color: var(--color-teal); font-weight: 700;">Rate Site ★</a></li>
+        </ul>
+      </nav>
+
+      <div class="nav-actions">
+        <!-- Theme Toggle (Fitts's Law min 44x44px target) -->
+        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle dark and light theme" title="Toggle theme">
+          <span aria-hidden="true">☀️</span>
+        </button>
+
+        <!-- Mobile Navigation Toggle -->
+        <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open main navigation menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" role="main">
+    <!-- ====================================================================
+         SECTION 1: HERO / HOME
+         ==================================================================== -->
+    <section id="home" class="section-padding" style="padding-top: var(--space-8);">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="hero-content">
+            <div class="hero-status-pill">
+              <span class="status-indicator-dot pulse-indicator"></span>
+              <span>Available for AI/ML Internships &amp; Research</span>
+            </div>
+            
+            <h1 class="hero-title">
+              Hi, I'm <span style="color: var(--color-teal);">Mahi Desai</span>.
+            </h1>
+
+            <p class="hero-tagline">
+              Building intelligent systems, from DNA embeddings to job-matching platforms.
+            </p>
+
+            <p class="hero-subtitle">
+              Third-Year Computer Engineering student at <strong>VJTI, Mumbai</strong>.<br>
+              Specializing in Deep Learning, Generative AI &amp; Full-Stack Development.
+            </p>
+
+            <div class="hero-actions">
+              <a href="#projects" class="btn btn-primary">
+                Explore Projects →
+              </a>
+              <a href="Mahi_Desai_Resume.pdf" download class="btn btn-secondary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                  <polyline points="7 10 12 15 17 10"></polyline>
+                  <line x1="12" y1="15" x2="12" y2="3"></line>
+                </svg>
+                Download Resume <span style="font-size: 0.75rem; opacity: 0.85;">(154 KB)</span>
+              </a>
+              <a href="#contact" class="btn btn-outline">
+                Contact Me
+              </a>
+              <!-- User Requirement #9: Separate Rate this site link in Hero -->
+              <a href="#sus" class="btn btn-outline" style="border-style: dashed; color: var(--color-teal); border-color: var(--color-teal);">
+                ★ Rate this site (SUS)
+              </a>
+            </div>
+
+            <!-- Social Links (Fitts's Law >= 44x44px touch targets) -->
+            <div class="hero-social-links">
+              <a href="https://github.com/d-mahi14" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Mahi Desai on GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/>
+                </svg>
+              </a>
+              <a href="https://www.linkedin.com/in/mahi-desai-0aa456380/" target="_blank" rel="noopener noreferrer" class="social-icon-btn" aria-label="Mahi Desai on LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+                </svg>
+              </a>
+              <a href="mailto:desaihmahi@gmail.com" class="social-icon-btn" aria-label="Send email to Mahi Desai">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Hero Avatar: User requirement #4 (/contents/photo.jpg with lazy loading and robust fallback) -->
+          <div class="hero-avatar-wrapper">
+            <div class="avatar-frame">
+              <img 
+                src="contents/photo.jpg" 
+                alt="Mahi Desai - Computer Engineering Student at VJTI Mumbai" 
+                class="avatar-img"
+                loading="lazy"
+                onerror="this.style.display='none'; document.getElementById('avatar-placeholder-box').style.display='flex';"
+              >
+              <div id="avatar-placeholder-box" class="avatar-fallback-placeholder" style="display: none;">
+                <div class="avatar-initials">MD</div>
+                <strong>Mahi Desai</strong>
+                <span style="margin-top: 4px; color: var(--color-teal);">VJTI Mumbai</span>
+                <span style="font-size: 0.7rem; color: var(--color-text-muted); margin-top: 6px;">[contents/photo.jpg]</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 2: ABOUT ME
+         ==================================================================== -->
+    <section id="about" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Background &amp; Expertise</span>
+          <h2 class="section-title">About Me</h2>
+          <p class="section-description">
+            Passionate about turning complex real-world challenges into robust, production-ready machine learning and systems solutions.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div>
+            <h3 style="margin-bottom: var(--space-4);">Engineering Philosophy</h3>
+            <p>
+              I'm Mahi Desai, a third-year Computer Engineering student at <strong>VJTI, Mumbai</strong>, focused on Artificial Intelligence, Machine Learning, and Full-Stack Development.
+            </p>
+            <p>
+              I like turning messy, real-world problems into working systems—whether that's clustering 20,000+ DNA sequences to discover new species, matching candidates to jobs with LLMs, or generating handwriting with GANs.
+            </p>
+            <p>
+              I'm an active member of <strong>ProjectX</strong> and a <strong>Hacktoberfest SuperContributor</strong>, where I've learned the immense value of open collaboration and clean code architecture. I'm currently seeking internships and research opportunities where I can build impactful AI-powered products.
+            </p>
+
+            <div style="margin-top: var(--space-6); background: var(--color-bg-surface); border: 1px solid var(--color-border); border-left: 3px solid var(--color-teal); border-radius: var(--radius-md); padding: var(--space-4);">
+              <strong style="color: var(--color-teal); display: block; margin-bottom: var(--space-1);">Primary Focus Area: AI/ML</strong>
+              <span style="font-size: 0.9rem; color: var(--color-text-secondary);">
+                Specialized in deep representation learning, generative modeling (cGANs, VAEs), low-latency LLM inference pipelines, and retrieval-augmented generation.
+              </span>
+            </div>
+          </div>
+
+          <!-- Skills Matrix -->
+          <div>
+            <h3 style="margin-bottom: var(--space-4);">Technical Competencies</h3>
+            
+            <div class="skills-category">
+              <div class="skills-category-title">Languages</div>
+              <div class="skill-chips">
+                <span class="skill-chip">C++</span>
+                <span class="skill-chip">Python</span>
+                <span class="skill-chip">JavaScript</span>
+                <span class="skill-chip">SQL</span>
+                <span class="skill-chip">HTML/CSS</span>
+              </div>
+            </div>
+
+            <div class="skills-category">
+              <div class="skills-category-title">Frameworks &amp; Deep Learning</div>
+              <div class="skill-chips">
+                <span class="skill-chip">PyTorch</span>
+                <span class="skill-chip">TensorFlow</span>
+                <span class="skill-chip">React.js</span>
+                <span class="skill-chip">Node.js</span>
+                <span class="skill-chip">Flask</span>
+                <span class="skill-chip">HDBSCAN</span>
+              </div>
+            </div>
+
+            <div class="skills-category">
+              <div class="skills-category-title">Developer Tools &amp; Platforms</div>
+              <div class="skill-chips">
+                <span class="skill-chip">Git</span>
+                <span class="skill-chip">GitHub</span>
+                <span class="skill-chip">VS Code</span>
+                <span class="skill-chip">Google Colab</span>
+                <span class="skill-chip">Kaggle</span>
+                <span class="skill-chip">Jupyter Notebook</span>
+                <span class="skill-chip">Postman</span>
+                <span class="skill-chip">Supabase</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 3: ACADEMIC & HONORS
+         ==================================================================== -->
+    <section id="academic" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Scholastic Foundation</span>
+          <h2 class="section-title">Academic &amp; Certifications</h2>
+          <p class="section-description">
+            Rigorous undergraduate training at VJTI Mumbai complemented by specialized coursework in neural network optimization and agentic AI.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <!-- VJTI -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <h4>Veermata Jijabai Technological Institute (VJTI), Matunga</h4>
+                <span class="timeline-period">Aug. 2024 - Present</span>
+              </div>
+              <p style="font-weight: 600; color: var(--color-teal); margin-bottom: var(--space-1);">
+                Third Year B.Tech in Computer Engineering
+              </p>
+              <div class="timeline-score">CGPA: 8.49</div>
+              <ul class="timeline-bullets">
+                <li>Core focus on Artificial Intelligence, Operating Systems, Machine Learning, and Software Architecture.</li>
+                <li>Active member of ProjectX student technical committee.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Prakash College -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <h4>Prakash College of Commerce and Science</h4>
+                <span class="timeline-period">Aug. 2022 - May. 2024</span>
+              </div>
+              <p style="font-weight: 600; color: var(--color-text-primary); margin-bottom: var(--space-1);">
+                Higher Secondary Certificate (HSC) &amp; Competitive State/National Entrances
+              </p>
+              <div class="timeline-score" style="color: var(--color-teal);">
+                MHT-CET: 99.95 %ile | JEE Main: 98.84 %ile | HSC: 88.83%
+              </div>
+              <ul class="timeline-bullets">
+                <li>Ranked in the top 0.05% of all candidates state-wide in the Maharashtra Common Entrance Test (MHT-CET).</li>
+                <li>Ranked in top 1.16% nationwide in JEE Main engineering examination.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Relevant Coursework -->
+        <div style="margin-top: var(--space-12);">
+          <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">Relevant Coursework</h3>
+          <div class="coursework-grid">
+            <span class="skill-chip">Data Structures and Algorithms</span>
+            <span class="skill-chip">Linear Algebra</span>
+            <span class="skill-chip">Discrete Mathematics</span>
+            <span class="skill-chip">Artificial Intelligence</span>
+            <span class="skill-chip">Machine Learning</span>
+            <span class="skill-chip">Operating Systems</span>
+            <span class="skill-chip">Database Management System</span>
+            <span class="skill-chip">Software Engineering</span>
+            <span class="skill-chip">Object Oriented Programming</span>
+          </div>
+        </div>
+
+        <!-- Certifications -->
+        <div style="margin-top: var(--space-12);">
+          <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">Certifications &amp; Deep Learning Credentials</h3>
+          <div class="cert-grid">
+            <div class="cert-card">
+              <h4 class="cert-title">Generative and Agentic AI</h4>
+              <div class="cert-date">Apr. 2026</div>
+              <p class="cert-topics">LLMs, RAG, AI agents, multimodal AI, and responsible AI architectures.</p>
+              <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
+                <a href="https://www.coursera.org/account/accomplishments/verify/87BG52WF37FA" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
+                  View Certificate ↗
+                </a>
+              </div>
+            </div>
+            <div class="cert-card">
+              <h4 class="cert-title">AWS Cloud Practitioner Essentials</h4>
+              <div class="cert-date">Sep. 2026</div>
+              <p class="cert-topics">AWS Training &amp; Certification covering core AWS services, cloud security, architecture, and pricing.</p>
+              <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
+                <a href="https://drive.google.com/file/d/1q45Fu52F-SsG8PN8n-scOBRR_DdpBPPi/view" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
+                  View Certificate ↗
+                </a>
+              </div>
+            </div>
+            <div class="cert-card">
+              <h4 class="cert-title">Neural Networks and Deep Learning</h4>
+              <div class="cert-date">Nov. 2025</div>
+              <p class="cert-topics">Deep learning architectures, vectorized forward/backward propagation, and gradient optimization algorithms.</p>
+              <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
+                <a href="https://www.coursera.org/account/accomplishments/verify/TMGWV8XV2G40" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
+                  View Certificate ↗
+                </a>
+              </div>
+            </div>
+            <div class="cert-card">
+              <h4 class="cert-title">Improving Deep Neural Networks</h4>
+              <div class="cert-date">Nov. 2025</div>
+              <p class="cert-topics">Hyperparameter tuning, L2 regularization, dropout, batch normalization, and Adam optimization.</p>
+              <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
+                <a href="https://www.coursera.org/account/accomplishments/verify/3ZC5KN01B2ND" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
+                  View Certificate ↗
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 4: EXPERIENCE & ACTIVITIES
+         ==================================================================== -->
+    <section id="experience" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Leadership &amp; Contributions</span>
+          <h2 class="section-title">Experience &amp; Activities</h2>
+          <p class="section-description">
+            Commitment to open-source software, peer mentoring, and technical leadership across campus initiatives.
+          </p>
+        </div>
+
+        <div class="timeline">
+          <!-- Project X -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <div>
+                  <h4>Core Member — Project X, VJTI</h4>
+                  <span style="font-size: 0.85rem; color: var(--color-teal); font-weight: 500;">Technical Club &amp; Open Source</span>
+                </div>
+                <span class="timeline-period">Jul. 2025 - Present</span>
+              </div>
+              <p style="margin-top: var(--space-2); margin-bottom: var(--space-2);">
+                Active contributor in a student-led technical club at VJTI dedicated to peer learning, systems engineering, and open-source contributions.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Contributed to open-source software via Hacktoberfest and earned the distinguished <strong>SuperContributor badge</strong>.</li>
+                <li>Mentored junior peers in fundamental data structures, git workflows, and machine learning principles.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- E-Cell -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-card">
+              <div class="timeline-meta">
+                <div>
+                  <h4>Department Coordinator — E-Cell, VJTI</h4>
+                  <span style="font-size: 0.85rem; color: var(--color-sky); font-weight: 500;">Design &amp; Innovation</span>
+                </div>
+                <span class="timeline-period">Sep. 2024 - Sep. 2025</span>
+              </div>
+              <p style="margin-top: var(--space-2); margin-bottom: var(--space-2);">
+                Supported the Entrepreneurship Cell design wing in shaping impactful branding, marketing campaigns, and visual assets.
+              </p>
+              <ul class="timeline-bullets">
+                <li>Created impactful visual content and promotional assets for campus-wide flagship events.</li>
+                <li>Fostered problem-solving, innovation, and cross-functional team coordination during hackathons and speaker summits.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 5: PROJECTS (Filterable Grid & Detail Modal)
+         ==================================================================== -->
+    <section id="projects" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Technical Portfolio</span>
+          <h2 class="section-title">Featured Projects</h2>
+          <p class="section-description">
+            Filterable engineering showcases across Deep Learning, AI/ML representation learning, and modern Full-Stack platforms.
+          </p>
+        </div>
+
+        <!-- Filter Chips (Hick's Law: Reduced cognitive choice) -->
+        <div class="project-filters" id="project-filters" role="group" aria-label="Filter projects by technical category">
+          <!-- Rendered dynamically by projects.js -->
+        </div>
+
+        <!-- Dynamic Grid -->
+        <div class="projects-grid" id="projects-grid" aria-live="polite">
+          <!-- Rendered dynamically by projects.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 6: BLOG
+         ==================================================================== -->
+    <section id="blog" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Technical Articles</span>
+          <h2 class="section-title">Engineering Deep-Dives</h2>
+          <p class="section-description">
+            Articles detailing technical design decisions, mathematical formulations, and production trade-offs from real implementations.
+          </p>
+        </div>
+
+        <!-- Search & Tag Controls -->
+        <div class="blog-controls">
+          <div class="blog-search-box">
+            <svg class="blog-search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input 
+              type="search" 
+              id="blog-search-input" 
+              class="blog-search-input" 
+              placeholder="Search articles by title, tag, or topic..." 
+              aria-label="Search articles"
+            >
+          </div>
+
+          <div id="blog-tags" class="skill-chips" role="group" aria-label="Filter articles by tag">
+            <!-- Rendered dynamically by blog.js -->
+          </div>
+        </div>
+
+        <!-- Blog Posts Grid -->
+        <div class="blog-grid" id="blog-grid" aria-live="polite">
+          <!-- Rendered dynamically by blog.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 7: CONTACT
+         ==================================================================== -->
+    <section id="contact" class="section-padding">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">Get In Touch</span>
+          <h2 class="section-title">Contact &amp; Collaboration</h2>
+          <p class="section-description">
+            Interested in AI research, engineering internships, or technical collaborations? Feel free to reach out.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Coordinates Info -->
+          <div>
+            <h3 style="margin-bottom: var(--space-4);">Direct Communication</h3>
+            <p>
+              I am based in Mumbai, India, and open to in-person or remote opportunities in AI/ML, representation learning, and software engineering.
+            </p>
+
+            <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6);">
+              <div style="display: flex; align-items: center; gap: var(--space-3);">
+                <div class="social-icon-btn" style="background: var(--color-teal-glow); color: var(--color-teal);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                    <polyline points="22,6 12,13 2,6"></polyline>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-muted);">Email</div>
+                  <a href="mailto:desaihmahi@gmail.com" style="font-weight: 600;">desaihmahi@gmail.com</a>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: var(--space-3);">
+                <div class="social-icon-btn" style="background: var(--color-teal-glow); color: var(--color-teal);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-muted);">Phone</div>
+                  <a href="tel:+918779316909" style="font-weight: 600;">+91 8779316909</a>
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; gap: var(--space-3);">
+                <div class="social-icon-btn" style="background: var(--color-teal-glow); color: var(--color-teal);">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                </div>
+                <div>
+                  <div style="font-size: 0.75rem; color: var(--color-text-muted);">Location</div>
+                  <span style="font-weight: 600;">Mumbai, Maharashtra, India</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form with Formspree Placeholder & Error Recovery -->
+          <div class="contact-card">
+            <h3 style="margin-bottom: var(--space-4);">Send a Message</h3>
+            
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">
+                  Your Full Name <span style="color: var(--color-error);">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="contact-name" 
+                  name="name" 
+                  class="form-input" 
+                  placeholder="e.g., Alex Smith" 
+                  required 
+                  aria-describedby="contact-name-error"
+                >
+                <span class="form-error-msg" id="contact-name-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">
+                  Email Address <span style="color: var(--color-error);">*</span>
+                </label>
+                <input 
+                  type="email" 
+                  id="contact-email" 
+                  name="email" 
+                  class="form-input" 
+                  placeholder="e.g., alex@company.com" 
+                  required 
+                  aria-describedby="contact-email-error"
+                >
+                <span class="form-error-msg" id="contact-email-error" role="alert"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">
+                  Project or Inquiry Details <span style="color: var(--color-error);">*</span>
+                </label>
+                <textarea 
+                  id="contact-message" 
+                  name="message" 
+                  class="form-textarea" 
+                  placeholder="Describe your inquiry, role requirements, or project details..." 
+                  required 
+                  aria-describedby="contact-message-error"
+                ></textarea>
+                <span class="form-error-msg" id="contact-message-error" role="alert"></span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" id="contact-submit-btn" style="width: 100%;">
+                Send Message
+              </button>
+
+              <!-- Live feedback banners (hidden by default) -->
+              <div class="form-feedback-banner" id="form-success-banner" style="display: none;" role="status" tabindex="-1"></div>
+              <div class="form-feedback-banner" id="form-error-banner" style="display: none;" role="alert" tabindex="-1"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         SECTION 8: USABILITY EVALUATION & SUS CALCULATOR
+         ==================================================================== -->
+    <section id="sus" class="section-padding" style="background-color: var(--color-bg-base);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-eyebrow">HCI &amp; Usability Engineering</span>
+          <h2 class="section-title">System Usability Scale (SUS) Evaluation</h2>
+          <p class="section-description">
+            Help evaluate this portfolio's usability using John Brooke's standardized 10-item System Usability Scale (SUS). Responses are stored locally and aggregated to benchmark with 5 test participants.
+          </p>
+        </div>
+
+        <div class="sus-card">
+          <form id="sus-form">
+
+            <!-- SUS Scoring Mode Selector -->
+            <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4); margin-bottom: var(--space-6);">
+              <label style="font-weight: 600; font-size: 0.9rem; color: var(--color-text-primary); display: block; margin-bottom: var(--space-2);">
+                Select Scoring Mode:
+              </label>
+              <div style="display: flex; flex-wrap: wrap; gap: var(--space-6);">
+                <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem;">
+                  <input type="radio" name="sus-scoring-mode" id="sus-mode-positive" value="positive" checked style="accent-color: var(--color-teal); width: 18px; height: 18px;">
+                  <span><strong>All-Positive Mode (Recommended):</strong> 5 is ALWAYS best across all questions.</span>
+                </label>
+                <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem;">
+                  <input type="radio" name="sus-scoring-mode" id="sus-mode-standard" value="standard" style="accent-color: var(--color-teal); width: 18px; height: 18px;">
+                  <span><strong>Standard Brooke SUS (1996):</strong> Alternating negative questions (Q2, 4, 6, 8, 10 are inverted).</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-6);">
+              <div style="flex: 1; min-width: 240px;">
+                <label for="sus-tester-name" class="form-label">Participant / Tester Identifier (Optional)</label>
+                <input type="text" id="sus-tester-name" name="sus-tester-name" class="form-input" placeholder="e.g., Participant P1 (Student) or Evaluator">
+              </div>
+            </div>
+
+            <!-- Standard 10 Questions List (Statically pre-rendered for instant accessibility) -->
+            <div id="sus-questions-list">
+              
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q1-label">
+                <strong>1.</strong> I think that I would like to use this website frequently.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q1-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q1" value="1" aria-label="1 for question 1">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q1" value="2" aria-label="2 for question 1">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q1" value="3" aria-label="3 for question 1">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q1" value="4" aria-label="4 for question 1">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q1" value="5" aria-label="5 for question 1">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q2-label">
+                <strong>2.</strong> I found the website unnecessarily complex.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q2-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q2" value="1" aria-label="1 for question 2">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q2" value="2" aria-label="2 for question 2">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q2" value="3" aria-label="3 for question 2">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q2" value="4" aria-label="4 for question 2">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q2" value="5" aria-label="5 for question 2">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q3-label">
+                <strong>3.</strong> I thought the website was easy to use.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q3-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q3" value="1" aria-label="1 for question 3">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q3" value="2" aria-label="2 for question 3">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q3" value="3" aria-label="3 for question 3">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q3" value="4" aria-label="4 for question 3">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q3" value="5" aria-label="5 for question 3">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q4-label">
+                <strong>4.</strong> I think that I would need the support of a technical person to be able to use this website.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q4-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q4" value="1" aria-label="1 for question 4">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q4" value="2" aria-label="2 for question 4">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q4" value="3" aria-label="3 for question 4">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q4" value="4" aria-label="4 for question 4">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q4" value="5" aria-label="5 for question 4">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q5-label">
+                <strong>5.</strong> I found the various functions in this website were well integrated.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q5-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q5" value="1" aria-label="1 for question 5">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q5" value="2" aria-label="2 for question 5">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q5" value="3" aria-label="3 for question 5">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q5" value="4" aria-label="4 for question 5">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q5" value="5" aria-label="5 for question 5">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q6-label">
+                <strong>6.</strong> I thought there was too much inconsistency in this website.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q6-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q6" value="1" aria-label="1 for question 6">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q6" value="2" aria-label="2 for question 6">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q6" value="3" aria-label="3 for question 6">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q6" value="4" aria-label="4 for question 6">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q6" value="5" aria-label="5 for question 6">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q7-label">
+                <strong>7.</strong> I would imagine that most people would learn to use this website very quickly.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q7-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q7" value="1" aria-label="1 for question 7">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q7" value="2" aria-label="2 for question 7">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q7" value="3" aria-label="3 for question 7">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q7" value="4" aria-label="4 for question 7">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q7" value="5" aria-label="5 for question 7">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q8-label">
+                <strong>8.</strong> I found the website very cumbersome to use.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q8-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q8" value="1" aria-label="1 for question 8">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q8" value="2" aria-label="2 for question 8">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q8" value="3" aria-label="3 for question 8">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q8" value="4" aria-label="4 for question 8">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q8" value="5" aria-label="5 for question 8">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q9-label">
+                <strong>9.</strong> I felt very confident using the website.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q9-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q9" value="1" aria-label="1 for question 9">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q9" value="2" aria-label="2 for question 9">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q9" value="3" aria-label="3 for question 9">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q9" value="4" aria-label="4 for question 9">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q9" value="5" aria-label="5 for question 9">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            <div class="sus-question-row">
+              <label class="sus-question-text" id="sus-q10-label">
+                <strong>10.</strong> I needed to learn a lot of things before I could get going with this website.
+              </label>
+              <div class="sus-options-scale" role="radiogroup" aria-labelledby="sus-q10-label">
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Disagree</span>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q10" value="1" aria-label="1 for question 10">
+                    <span class="sus-scale-num">1</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q10" value="2" aria-label="2 for question 10">
+                    <span class="sus-scale-num">2</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q10" value="3" aria-label="3 for question 10">
+                    <span class="sus-scale-num">3</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q10" value="4" aria-label="4 for question 10">
+                    <span class="sus-scale-num">4</span>
+                  </label>
+                
+                  <label class="sus-radio-label">
+                    <input type="radio" name="sus-q10" value="5" aria-label="5 for question 10">
+                    <span class="sus-scale-num">5</span>
+                  </label>
+                
+                <span style="font-size: 0.75rem; color: var(--color-text-muted);">Strongly Agree</span>
+              </div>
+            </div>
+
+            </div>
+
+            <div style="margin-top: var(--space-6);">
+              <label for="sus-comments" class="form-label">Qualitative Observations / Notes (Optional)</label>
+              <textarea id="sus-comments" name="sus-comments" class="form-textarea" placeholder="Note any friction points, navigation confusion, or positive observations during your interaction..."></textarea>
+            </div>
+
+            <div style="margin-top: var(--space-6); display: flex; gap: var(--space-4); flex-wrap: wrap; align-items: center;">
+              <button type="submit" class="btn btn-primary">
+                Calculate &amp; Submit SUS Score
+              </button>
+              <span style="font-size: 0.8rem; color: var(--color-text-muted);">
+                Standard Brooke formula: odd items (score-1), even items (5-score), multiplied by 2.5.
+              </span>
+            </div>
+          </form>
+
+          <!-- Latest Result Display -->
+          
+          <div id="sus-error-alert" class="form-feedback-banner error" style="display: none; margin-top: var(--space-4);" role="alert"></div>
+          <div id="sus-latest-result" style="display: none; margin-top: var(--space-8);"></div>
+
+          <!-- Aggregate View for 5 Testers -->
+          <div id="sus-aggregates-container" style="margin-top: var(--space-8);">
+            <!-- Rendered dynamically by sus.js -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====================================================================
+       ACCESSIBLE PROJECT DETAIL MODAL (Nielsen #3: User Control & Freedom)
+       ==================================================================== -->
+  <div 
+    id="project-modal" 
+    class="modal-backdrop" 
+    role="dialog" 
+    aria-modal="true" 
+    aria-hidden="true" 
+    aria-labelledby="modal-project-title">
+    <div class="modal-dialog">
+      <button type="button" class="modal-close-btn" aria-label="Close dialog">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+      <div id="modal-dynamic-content">
+        <!-- Injected dynamically by projects.js / blog.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Back to Top Button (Fitts's Law: Corner Anchor) -->
+  <button type="button" class="back-to-top-btn" id="back-to-top-btn" aria-label="Back to top of page">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
+  <!-- ====================================================================
+       FOOTER (HCI - Consistency & User Requirement #9: Rate this site link)
+       ==================================================================== -->
+  <footer id="footer" class="site-footer" role="contentinfo">
+    <div class="container footer-content">
+      <div>
+        <p style="font-weight: 700; color: var(--color-text-primary); margin-bottom: 4px;">
+          Mahi Desai • Portfolio &amp; HCI Usability Suite
+        </p>
+        
+      </div>
+
+      <div style="display: flex; gap: var(--space-4); align-items: center; flex-wrap: wrap;">
+        <a href="docs/hci-design-rationale.html" style="font-size: 0.85rem; color: var(--color-teal); font-weight: 600; text-decoration: underline;">
+          HCI Design Rationale ↗
+        </a>
+        <a href="docs/usability-evaluation.html" style="font-size: 0.85rem; color: var(--color-teal); font-weight: 600; text-decoration: underline;">
+          Usability Evaluation Protocol ↗
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Application Scripts (Modular Vanilla JS) -->
+  <script src="assets/js/data.js"></script>
+  <script src="assets/js/projects.js"></script>
+  <script src="assets/js/blog.js"></script>
+  <script src="assets/js/contact.js"></script>
+  <script src="assets/js/sus.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

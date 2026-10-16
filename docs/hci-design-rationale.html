@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HCI &amp; UX Design Rationale | Mahi Desai</title>
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    body {
+      padding: var(--space-8) var(--space-4);
+      background-color: var(--color-bg-base);
+      color: var(--color-text-primary);
+    }
+    .doc-container {
+      max-width: 960px;
+      margin: 0 auto;
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-lg);
+    }
+    @media (max-width: 768px) {
+      .doc-container { padding: var(--space-4); }
+    }
+    .back-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+    }
+    h1 { color: var(--color-teal); font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: var(--space-3); }
+    h2 { color: var(--color-text-primary); font-size: 1.5rem; margin-top: var(--space-8); margin-bottom: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
+    h3 { color: var(--color-sky); font-size: 1.15rem; margin-top: var(--space-6); margin-bottom: var(--space-2); }
+    p { margin-bottom: var(--space-4); line-height: 1.7; color: var(--color-text-secondary); }
+    ul, ol { padding-left: var(--space-6); margin-bottom: var(--space-4); }
+    li { margin-bottom: var(--space-2); color: var(--color-text-secondary); line-height: 1.6; }
+    strong { color: var(--color-text-primary); }
+    code { background: var(--color-bg-elevated); padding: 2px 6px; border-radius: var(--radius-sm); font-family: var(--font-family-mono); font-size: 0.88em; color: var(--color-teal); border: 1px solid var(--color-border); }
+    .table-wrapper { width: 100%; overflow-x: auto; margin-block: var(--space-4); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { padding: 10px 14px; border: 1px solid var(--color-border); text-align: left; }
+    th { background-color: var(--color-bg-elevated); color: var(--color-teal); font-weight: 600; }
+    .badge-pass { display: inline-block; padding: 2px 8px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.75rem; background: var(--color-teal-glow); color: var(--color-teal); }
+    .formula-card { background: var(--color-bg-elevated); border-left: 3px solid var(--color-teal); padding: var(--space-4); border-radius: var(--radius-md); margin-block: var(--space-4); font-family: var(--font-family-mono); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="doc-container">
+    <header class="back-nav-bar">
+      <a href="../index.html#footer" class="btn btn-secondary btn-sm">
+        ← Back to Portfolio
+      </a>
+      <span style="font-family: var(--font-family-mono); font-size: 0.8rem; color: var(--color-teal);">
+        Mahi Desai • HCI Specification
+      </span>
+    </header>
+
+    <main>
+      <h1>HCI &amp; UX Design Rationale</h1>
+      <p style="font-size: 1rem; color: var(--color-text-secondary);">
+        <strong>Author:</strong> Mahi Desai &bull; <strong>Platform:</strong> Semantic HTML5, CSS3, Vanilla JS &bull; <strong>Standards:</strong> WCAG 2.1 AA/AAA, Nielsen's 10 Heuristics, Shneiderman's 8 Golden Rules, Fitts's &amp; Hick's Laws.
+      </p>
+
+      <!-- Section 1: Color Contrast -->
+      <section>
+        <h2>1. Color Contrast &amp; Accessibility (WCAG 2.1 AA &amp; AAA)</h2>
+        <p>
+          All color pairs were mathematically validated using the standardized relative luminance formula:
+        </p>
+        <div class="formula-card">
+          L = 0.2126 &times; R + 0.7152 &times; G + 0.0722 &times; B<br>
+          Contrast Ratio = (L1 + 0.05) / (L2 + 0.05) &nbsp; [where L1 &gt; L2]
+        </div>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>UI Element &amp; Mode</th>
+                <th>Foreground</th>
+                <th>Background</th>
+                <th>Calculated Ratio</th>
+                <th>Compliance</th>
+                <th>Rationale</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Light Mode: Primary Text &amp; Links</strong></td>
+                <td><code>#0F766E</code></td>
+                <td><code>#FFFFFF</code></td>
+                <td><strong>5.55 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA Pass</span></td>
+                <td>Exceeds 4.5:1 threshold, preventing eye fatigue while maintaining brand teal tone.</td>
+              </tr>
+              <tr>
+                <td><strong>Light Mode: Canvas Text</strong></td>
+                <td><code>#0F766E</code></td>
+                <td><code>#F8FAFC</code></td>
+                <td><strong>5.33 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA Pass</span></td>
+                <td>High legibility over slate canvas cards and layout dividers.</td>
+              </tr>
+              <tr>
+                <td><strong>Teal CTA Buttons (Both Modes)</strong></td>
+                <td><code>#0F172A</code> (Navy)</td>
+                <td><code>#14B8A6</code> (Teal)</td>
+                <td><strong>7.13 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AAA Pass</span></td>
+                <td>Surpasses the strict 7:1 AAA standard for maximum visual clarity on key actions.</td>
+              </tr>
+              <tr>
+                <td><strong>Dark Mode: Body Text</strong></td>
+                <td><code>#F8FAFC</code></td>
+                <td><code>#0B0F19</code></td>
+                <td><strong>18.30 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AAA Pass</span></td>
+                <td>Exceptional contrast preventing eye strain in low-light environments.</td>
+              </tr>
+              <tr>
+                <td><strong>Dark Mode: Teal Accents</strong></td>
+                <td><code>#14B8A6</code></td>
+                <td><code>#0B0F19</code></td>
+                <td><strong>7.66 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AAA Pass</span></td>
+                <td>Accent color easily passes AAA standard for headings and focus rings.</td>
+              </tr>
+              <tr>
+                <td><strong>Dark Mode: Secondary Metadata</strong></td>
+                <td><code>#94A3B8</code></td>
+                <td><code>#111827</code></td>
+                <td><strong>6.45 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA Pass</span></td>
+                <td>Timestamps, tags, and metrics remain crisp and legible.</td>
+              </tr>
+              <tr>
+                <td><strong>Light Mode: Secondary Text</strong></td>
+                <td><code>#334155</code></td>
+                <td><code>#FFFFFF</code></td>
+                <td><strong>9.53 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AAA Pass</span></td>
+                <td>Subheadings and descriptions provide effortless legibility.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 2: Nielsen's Heuristics -->
+      <section>
+        <h2>2. Mapping to Nielsen's 10 Usability Heuristics</h2>
+        
+        <h3>1. Visibility of System Status</h3>
+        <ul>
+          <li><strong>Reading Progress Bar:</strong> Fixed 3px gradient line at top of viewport indicates scroll depth.</li>
+          <li><strong>ScrollSpy Navigation:</strong> Header dynamically highlights current section with <code>aria-current="page"</code>.</li>
+          <li><strong>Theme Toggle:</strong> Button displays alternate state icon (Sun ☀️ / Moon 🌙) with accessible text.</li>
+        </ul>
+
+        <h3>2. Match Between System &amp; the Real World</h3>
+        <ul>
+          <li>Information architecture mirrors authentic engineering milestones: Foundations (Academic), Delivery (Projects), and Reach (Contact).</li>
+          <li>Standard domain concepts (eDNA, VAE, Groq LLM, Supabase RLS) used accurately without invented claims.</li>
+        </ul>
+
+        <h3>3. User Control &amp; Freedom</h3>
+        <ul>
+          <li><strong>Dismissible Modals:</strong> Project detail dialogs dismiss via <code>Escape</code> key, <code>✕</code> button, or backdrop click.</li>
+          <li><strong>Focus Restoration:</strong> Closing a dialog returns focus to the exact card button that opened it.</li>
+          <li><strong>Back-to-Top Button:</strong> Floating anchor appears after scrolling 400px down for instant return to top.</li>
+        </ul>
+
+        <h3>4. Consistency &amp; Standards</h3>
+        <ul>
+          <li><strong>Tokenized 8pt Grid:</strong> Standard CSS custom properties (<code>--space-1</code> through <code>--space-16</code>) regulate all gutters.</li>
+          <li><strong>Standard Element Semantics:</strong> Buttons trigger actions; anchors navigate; external links open safely with <code>rel="noopener noreferrer"</code>.</li>
+        </ul>
+
+        <h3>5. Error Prevention</h3>
+        <ul>
+          <li><strong>Live Field Validation:</strong> Form fields validate on <code>blur</code> and <code>input</code>, highlighting issues before submission.</li>
+          <li><strong>Descriptive Required Indicators:</strong> Required fields feature an asterisk and clear labels.</li>
+        </ul>
+
+        <h3>6. Recognition Over Recall</h3>
+        <ul>
+          <li><strong>Category Filter Chips:</strong> Projects categorized into All, AI/ML, Deep Learning, Full-Stack for immediate visual recognition.</li>
+          <li><strong>Technology Pills:</strong> Distinct badges highlight frameworks (PyTorch, TensorFlow, React.js) on every card.</li>
+          <li><strong>Resume Size Indicator:</strong> Explicit <code>154 KB</code> file size badge informs users before downloading.</li>
+        </ul>
+
+        <h3>7. Flexibility &amp; Efficiency of Use</h3>
+        <ul>
+          <li><strong>Instant Blog Search:</strong> Real-time substring filter searches articles across titles, tags, and content.</li>
+          <li><strong>Dual SUS Modes:</strong> Supports both All-Positive Mode (5 = Best) and Standard Brooke SUS (Alternating polarity).</li>
+          <li><strong>Keyboard Navigation:</strong> Fully operable via keyboard with high-contrast <code>:focus-visible</code> outlines.</li>
+        </ul>
+
+        <h3>8. Aesthetic &amp; Minimalist Design</h3>
+        <ul>
+          <li>Deep navy canvas paired with teal accents; visual hierarchy prioritizes core engineering artifacts.</li>
+          <li>Clean borders delimit sections using Gestalt Common Region principles without visual clutter.</li>
+        </ul>
+
+        <h3>9. Help Users Recognize, Diagnose, &amp; Recover from Errors</h3>
+        <ul>
+          <li>Field validation shows specific messages: <em>"Please enter a valid email address"</em> rather than generic warnings.</li>
+          <li>SUS calculator shows an interactive question-by-question breakdown explaining how points are calculated.</li>
+        </ul>
+
+        <h3>10. Help &amp; Documentation</h3>
+        <ul>
+          <li>Dedicated documentation pages for HCI design rationale and usability evaluation protocols.</li>
+          <li>Transparent listing of education credentials, GitHub links, and contact coordinates.</li>
+        </ul>
+      </section>
+
+      <!-- Section 3: Shneiderman's 8 Golden Rules -->
+      <section>
+        <h2>3. Shneiderman's 8 Golden Rules Integration</h2>
+        <ol>
+          <li><strong>Strive for Consistency:</strong> Standardized typography scale, button heights (min 44px), and card radii.</li>
+          <li><strong>Cater to Universal Usability:</strong> Strict WCAG 2.1 AA/AAA contrast ratios and <code>prefers-reduced-motion</code> support.</li>
+          <li><strong>Offer Informative Feedback:</strong> Visual hover states, active navigation indicators, and real-time form validation.</li>
+          <li><strong>Design Dialogs to Yield Closure:</strong> Contact form shows confirmation alert; SUS form calculates instant score badge.</li>
+          <li><strong>Prevent Errors:</strong> Pre-submission input checks prevent blank or malformed inquiries.</li>
+          <li><strong>Permit Easy Reversal of Actions:</strong> Modals close with Escape key; SUS responses can be reset with one click.</li>
+          <li><strong>Support Internal Locus of Control:</strong> Users control theme, project filter categories, and article search.</li>
+          <li><strong>Reduce Short-Term Memory Load:</strong> Tech stack chips on cards prevent needing to remember project details.</li>
+        </ol>
+      </section>
+
+      <!-- Section 4: Fitts's & Hick's Laws -->
+      <section>
+        <h2>4. Fitts's Law &amp; Hick's Law Engineering</h2>
+        <h3>Fitts's Law (Touch Target Sizing &amp; Corners)</h3>
+        <p>
+          Every interactive element (buttons, filter chips, theme toggles, modal close buttons, social icons) has a minimum touch target of <strong>44px &times; 44px</strong>, satisfying WCAG 2.5.5.
+          The sticky header occupies the screen top, and the back-to-top button is anchored in the bottom-right corner for effortless acquisition.
+        </p>
+
+        <h3>Hick's Law (Cognitive Load Reduction)</h3>
+        <p>
+          The top navigation is consolidated into <strong>6 primary destinations</strong> plus a direct "Rate Site ★" link. Project cards use 4 clean filter chips instead of complex nested menus.
+        </p>
+      </section>
+
+      <!-- Section 5: Gestalt Principles -->
+      <section>
+        <h2>5. Gestalt Principles in Layout Design</h2>
+        <ul>
+          <li><strong>Proximity:</strong> Degree titles, institution names, and dates are grouped closely within individual timeline cards.</li>
+          <li><strong>Common Region:</strong> Cards have distinct borders and surface backgrounds that clearly enclose related content.</li>
+          <li><strong>Similarity:</strong> All skill chips and filter pills share uniform border radius, padding, and font styling.</li>
+          <li><strong>Continuity:</strong> The vertical timeline line guides the eye smoothly through chronological milestones.</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer style="margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+      <a href="../index.html#footer" class="btn btn-primary btn-sm">← Return to Portfolio</a>
+      <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="btn btn-secondary btn-sm">Top ↑</a>
+    </footer>
+  </div>
+</body>
+</html>

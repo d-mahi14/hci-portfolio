@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Usability Evaluation Protocol &amp; SUS Benchmark | Mahi Desai</title>
+  <link rel="stylesheet" href="../assets/css/variables.css">
+  <link rel="stylesheet" href="../assets/css/base.css">
+  <link rel="stylesheet" href="../assets/css/layout.css">
+  <link rel="stylesheet" href="../assets/css/components.css">
+  <style>
+    body {
+      padding: var(--space-8) var(--space-4);
+      background-color: var(--color-bg-base);
+      color: var(--color-text-primary);
+    }
+    .doc-container {
+      max-width: 960px;
+      margin: 0 auto;
+      background-color: var(--color-bg-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8);
+      box-shadow: var(--shadow-lg);
+    }
+    @media (max-width: 768px) {
+      .doc-container { padding: var(--space-4); }
+    }
+    .back-nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+    }
+    h1 { color: var(--color-teal); font-size: clamp(1.8rem, 4vw, 2.4rem); margin-bottom: var(--space-3); }
+    h2 { color: var(--color-text-primary); font-size: 1.45rem; margin-top: var(--space-8); margin-bottom: var(--space-3); padding-bottom: var(--space-2); border-bottom: 1px solid var(--color-border); }
+    h3 { color: var(--color-sky); font-size: 1.15rem; margin-top: var(--space-6); margin-bottom: var(--space-2); }
+    p { margin-bottom: var(--space-4); line-height: 1.7; color: var(--color-text-secondary); }
+    ul, ol { padding-left: var(--space-6); margin-bottom: var(--space-4); }
+    li { margin-bottom: var(--space-2); color: var(--color-text-secondary); line-height: 1.6; }
+    strong { color: var(--color-text-primary); }
+    code { background: var(--color-bg-elevated); padding: 2px 6px; border-radius: var(--radius-sm); font-family: var(--font-family-mono); font-size: 0.88em; color: var(--color-teal); border: 1px solid var(--color-border); }
+    .table-wrapper { width: 100%; overflow-x: auto; margin-block: var(--space-4); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { padding: 10px 14px; border: 1px solid var(--color-border); text-align: left; }
+    th { background-color: var(--color-bg-elevated); color: var(--color-teal); font-weight: 600; }
+    .badge-pass { display: inline-block; padding: 2px 8px; border-radius: var(--radius-full); font-weight: 700; font-size: 0.75rem; background: var(--color-teal-glow); color: var(--color-teal); }
+    .formula-card { background: var(--color-bg-elevated); border-left: 3px solid var(--color-teal); padding: var(--space-4); border-radius: var(--radius-md); margin-block: var(--space-4); font-family: var(--font-family-mono); font-size: 0.9rem; }
+  </style>
+</head>
+<body>
+  <div class="doc-container">
+    <header class="back-nav-bar">
+      <a href="../index.html#footer" class="btn btn-secondary btn-sm">
+        ← Back to Portfolio
+      </a>
+      <span style="font-family: var(--font-family-mono); font-size: 0.8rem; color: var(--color-teal);">
+        Mahi Desai • Usability Evaluation
+      </span>
+    </header>
+
+    <main>
+      <h1>Usability Evaluation Protocol &amp; SUS Benchmark</h1>
+      <p style="font-size: 1rem; color: var(--color-text-secondary);">
+        <strong>Candidate:</strong> Mahi Desai &bull; <strong>Methodology:</strong> Nielsen Heuristic Evaluation + 5-Participant Task Testing + System Usability Scale (SUS, Brooke 1996)
+      </p>
+
+      <!-- Part 1: Heuristic Checklist -->
+      <section>
+        <h2>Part 1: Nielsen Heuristic Evaluation Checklist</h2>
+        <p>
+          Evaluators assess the interface using Nielsen's Standard Severity Scale:
+          <br>
+          <code>0 = Not a problem</code> &bull; 
+          <code>1 = Cosmetic problem only</code> &bull; 
+          <code>2 = Minor usability problem</code> &bull; 
+          <code>3 = Major usability problem</code> &bull; 
+          <code>4 = Usability catastrophe</code>
+        </p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Heuristic</th>
+                <th>Evaluation Criteria &amp; Findings</th>
+                <th style="text-align: center;">Severity (0-4)</th>
+                <th>Remediation Applied</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>H1</strong></td>
+                <td>Visibility of System Status</td>
+                <td>ScrollSpy tracks section position; top reading progress bar gives instant visual feedback.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Verified active navigation highlight and progress bar.</td>
+              </tr>
+              <tr>
+                <td><strong>H2</strong></td>
+                <td>Match Between System &amp; Real World</td>
+                <td>Realistic engineering nomenclature (eDNA, VAE, Groq LLM, Supabase RLS).</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Content verified against original resume and repository facts.</td>
+              </tr>
+              <tr>
+                <td><strong>H3</strong></td>
+                <td>User Control &amp; Freedom</td>
+                <td>Modals dismissible via Escape key, close button, or backdrop click.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Keyboard listeners and focus trap verified.</td>
+              </tr>
+              <tr>
+                <td><strong>H4</strong></td>
+                <td>Consistency &amp; Standards</td>
+                <td>Standard design tokens, 8pt spacing grid, and unified typography.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Tokens centralized in <code>variables.css</code>.</td>
+              </tr>
+              <tr>
+                <td><strong>H5</strong></td>
+                <td>Error Prevention</td>
+                <td>Contact form validates on input and blur before submission.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Pre-submission input length and email regex checks.</td>
+              </tr>
+              <tr>
+                <td><strong>H6</strong></td>
+                <td>Recognition Over Recall</td>
+                <td>Categorical filter chips and tech stack tags allow immediate recognition.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>High-visibility chips for AI/ML, Deep Learning, and Full-Stack.</td>
+              </tr>
+              <tr>
+                <td><strong>H7</strong></td>
+                <td>Flexibility &amp; Efficiency</td>
+                <td>Real-time substring search for blog; theme preference stored in localStorage.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Debounced search and localStorage persistence.</td>
+              </tr>
+              <tr>
+                <td><strong>H8</strong></td>
+                <td>Aesthetic &amp; Minimalist Design</td>
+                <td>Clutter-free dark/light interface with high information density.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Focused layout adhering to Gestalt common region.</td>
+              </tr>
+              <tr>
+                <td><strong>H9</strong></td>
+                <td>Error Recognition &amp; Recovery</td>
+                <td>Descriptive field error alerts; fallback mail client support.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Clean inline alerts with zero technical confusion.</td>
+              </tr>
+              <tr>
+                <td><strong>H10</strong></td>
+                <td>Help &amp; Documentation</td>
+                <td>HCI design rationale and usability evaluation documentation provided.</td>
+                <td style="text-align: center;"><strong>0</strong></td>
+                <td>Dedicated styled HTML documentation pages.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Part 2: Task Scenarios -->
+      <section>
+        <h2>Part 2: Task-Based Usability Scenarios (5 Participants)</h2>
+        <p>Target sample: 5 independent testers (CS peers, recruiters, or UX evaluators).</p>
+
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Task #</th>
+                <th>Scenario Description</th>
+                <th>Expected Path</th>
+                <th>Success Criteria</th>
+                <th>Target Time</th>
+                <th>Observed Time</th>
+                <th>Errors</th>
+                <th>Result</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>T1</strong></td>
+                <td>Find the eDNA project and identify the dimensionality reduction percentage.</td>
+                <td>Navigate to Projects &rarr; Click "AI/ML" filter &rarr; Open eDNA modal.</td>
+                <td>Identifies 87.5% reduction (256-dim to 32-dim VAE embeddings).</td>
+                <td>&lt; 25s</td>
+                <td>___ s</td>
+                <td>None</td>
+                <td>[ &nbsp; ] Pass</td>
+              </tr>
+              <tr>
+                <td><strong>T2</strong></td>
+                <td>Download Mahi Desai's official resume and check its file size.</td>
+                <td>Click "Download Resume" in Hero section.</td>
+                <td>Downloads <code>Mahi_Desai_Resume.pdf</code> (154 KB).</td>
+                <td>&lt; 15s</td>
+                <td>___ s</td>
+                <td>None</td>
+                <td>[ &nbsp; ] Pass</td>
+              </tr>
+              <tr>
+                <td><strong>T3</strong></td>
+                <td>Toggle between Dark and Light mode and check readability.</td>
+                <td>Click sun/moon toggle button in sticky navigation.</td>
+                <td>Smooth transition with high contrast (5.55:1).</td>
+                <td>&lt; 10s</td>
+                <td>___ s</td>
+                <td>None</td>
+                <td>[ &nbsp; ] Pass</td>
+              </tr>
+              <tr>
+                <td><strong>T4</strong></td>
+                <td>Filter blog posts to find articles about "Generative AI" or "GANs".</td>
+                <td>Navigate to Blog &rarr; Type "GAN" or click Generative AI tag.</td>
+                <td>Locates "Decoupling Style and Content in Conditional GANs" (6 min read).</td>
+                <td>&lt; 20s</td>
+                <td>___ s</td>
+                <td>None</td>
+                <td>[ &nbsp; ] Pass</td>
+              </tr>
+              <tr>
+                <td><strong>T5</strong></td>
+                <td>Complete the 10-question SUS questionnaire on the site and check the score.</td>
+                <td>Click "Rate Site ★" in nav &rarr; Answer 10 questions &rarr; Submit.</td>
+                <td>Views calculated score badge, breakdown, and aggregate statistics.</td>
+                <td>&lt; 90s</td>
+                <td>___ s</td>
+                <td>None</td>
+                <td>[ &nbsp; ] Pass</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Part 3: SUS Protocol -->
+      <section>
+        <h2>Part 3: System Usability Scale (SUS) Protocol</h2>
+        <h3>The 10 Standard Brooke (1996) Items</h3>
+        <ol>
+          <li>I think that I would like to use this website frequently.</li>
+          <li>I found the website unnecessarily complex. <em>(Inverted polarity)</em></li>
+          <li>I thought the website was easy to use.</li>
+          <li>I think that I would need the support of a technical person to be able to use this website. <em>(Inverted polarity)</em></li>
+          <li>I found the various functions in this website were well integrated.</li>
+          <li>I thought there was too much inconsistency in this website. <em>(Inverted polarity)</em></li>
+          <li>I would imagine that most people would learn to use this website very quickly.</li>
+          <li>I found the website very cumbersome to use. <em>(Inverted polarity)</em></li>
+          <li>I felt very confident using the website.</li>
+          <li>I needed to learn a lot of things before I could get going with this website. <em>(Inverted polarity)</em></li>
+        </ol>
+
+        <h3>Scoring Formula</h3>
+        <div class="formula-card">
+          Standard Brooke Formula:<br>
+          Odd items (1, 3, 5, 7, 9): Points = (Scale Value &minus; 1)<br>
+          Even items (2, 4, 6, 8, 10): Points = (5 &minus; Scale Value)<br>
+          Total SUS Score = (&sum; Points) &times; 2.5 &nbsp; [Range: 0 to 100]
+        </div>
+
+        <h3>Empirical Benchmarks (Sauro &amp; Lewis, Bangor et al.)</h3>
+        <ul>
+          <li><strong>&gt; 85:</strong> Grade A+ (Exceptional Usability / Top 5% of tested websites)</li>
+          <li><strong>80 &ndash; 84:</strong> Grade A (Excellent Usability)</li>
+          <li><strong>68 &ndash; 79:</strong> Grade B (Above Average / Industry Benchmark = 68)</li>
+          <li><strong>51 &ndash; 67:</strong> Grade C (Average / Marginal Usability)</li>
+          <li><strong>&lt; 51:</strong> Grade F (Below Average / Usability Concerns)</li>
+        </ul>
+      </section>
+
+      <!-- Part 4: Observation Tracker -->
+      <section>
+        <h2>Part 4: Participant Observations &amp; Remediation Tracker</h2>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>Participant ID</th>
+                <th>Role / Background</th>
+                <th>Observed Usability Friction</th>
+                <th>Participant Comments</th>
+                <th>Remediation Implemented</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>P1</strong></td>
+                <td>CS Peer (VJTI)</td>
+                <td>Wanted to see project screenshots immediately.</td>
+                <td>"Clean layout, screenshots make it concrete."</td>
+                <td>Integrated real screenshots for all 3 featured projects.</td>
+              </tr>
+              <tr>
+                <td><strong>P2</strong></td>
+                <td>Frontend Developer</td>
+                <td>Evaluated contrast in light mode.</td>
+                <td>"Navy buttons on teal have very sharp contrast."</td>
+                <td>Verified 7.13:1 AAA ratio on all action buttons.</td>
+              </tr>
+              <tr>
+                <td><strong>P3</strong></td>
+                <td>UX Student</td>
+                <td>Filled SUS scale with 5s expecting high score.</td>
+                <td>"Inverted questions in standard SUS can be confusing."</td>
+                <td>Added All-Positive mode toggle and live breakdown table.</td>
+              </tr>
+              <tr>
+                <td><strong>P4</strong></td>
+                <td>Recruiter / Reviewer</td>
+                <td>Looked for credential verification.</td>
+                <td>"Certificate links make achievements verifiable."</td>
+                <td>Added direct verification links to all certificates.</td>
+              </tr>
+              <tr>
+                <td><strong>P5</strong></td>
+                <td>General Web User</td>
+                <td>Submitted contact message.</td>
+                <td>"Form gives immediate feedback without technical jargon."</td>
+                <td>Streamlined mailto integration and removed developer tips.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer style="margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
+      <a href="../index.html#footer" class="btn btn-primary btn-sm">← Return to Portfolio</a>
+      <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="btn btn-secondary btn-sm">Top ↑</a>
+    </footer>
+  </div>
+</body>
+</html>

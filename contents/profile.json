@@ -1,0 +1,14 @@
+{
+  "name": "Mahi Desai",
+  "tagline": "Turning ideas into intelligent solutions through code, creativity, and AI.",
+  "subtitle": "Computer Engineering student | Deep Learning, Generative AI & Full-Stack Development",
+  "bio": "I'm Mahi Desai, a third-year Computer Engineering student at VJTI, Mumbai, focused on Artificial Intelligence, Machine Learning, and Full-Stack Development. I like turning messy, real-world problems into working systems, whether that's clustering 20,000+ DNA sequences to discover new species, matching candidates to jobs with LLMs, or generating handwriting with GANs. I'm an active member of ProjectX and a Hacktoberfest SuperContributor, where I've learned the value of collaboration and open source. I'm currently looking for internships and research opportunities where I can build AI-powered products and keep growing as an engineer.",
+  "email": "[desaihmahi@gmail.com]",
+  "location": "Mumbai, India",
+  "resume": "MahiResume(13).pdf",
+  "photo": "photo.jpg",
+  "social": {
+    "linkedin": "https://www.linkedin.com/in/mahi-desai-0aa456380/",
+    "github": "https://github.com/d-mahi14"
+  }
+}

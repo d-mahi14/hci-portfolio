@@ -1,0 +1,284 @@
+/**
+ * LAYOUT, GRID SYSTEM & RESPONSIVE CONTAINERS
+ * 
+ * [HCI - Fitts's Law & Hick's Law]
+ * Navigation restricted to 6 core destinations, spacious touch targets (>=44px).
+ * Tested fluidly across 360px, 768px, and 1280px.
+ */
+
+.container {
+  width: 100%;
+  max-width: var(--max-width-content);
+  margin-inline: auto;
+  padding-inline: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-8);
+  }
+}
+
+/* Reading Progress Bar */
+.reading-progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  width: 0%;
+  background: linear-gradient(90deg, var(--color-teal), var(--color-sky));
+  z-index: 1100;
+  transition: width 100ms ease-out;
+}
+
+/* [HCI - Nielsen #1: Sticky Header with Visibility of System Status] */
+.site-header {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--nav-height);
+  background-color: rgba(11, 15, 25, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 1000;
+  transition: background-color var(--transition-normal);
+}
+
+[data-theme="light"] .site-header {
+  background-color: rgba(248, 250, 252, 0.88);
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.brand-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  font-weight: 700;
+  font-size: var(--font-size-lg);
+  color: var(--color-text-primary);
+  text-decoration: none;
+}
+
+.brand-badge {
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-teal-glow);
+  color: var(--color-teal);
+  border: 1px solid var(--color-teal);
+  border-radius: var(--radius-sm);
+}
+
+/* [HCI - Hick's Law: 6 Navigation Items Only] */
+.nav-menu {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  gap: var(--space-2);
+}
+
+.nav-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--min-touch-target);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  transition: all var(--transition-fast);
+}
+
+.nav-link:hover {
+  color: var(--color-text-primary);
+  background-color: var(--color-bg-hover);
+  text-decoration: none;
+}
+
+/* Active Link State */
+.nav-link.active {
+  color: var(--color-teal);
+  font-weight: 600;
+  background-color: var(--color-teal-glow);
+}
+
+/* Nav Actions (Theme Switcher + Mobile Toggle) */
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* Theme Toggle Button (Fitts's Law >= 44x44px) */
+.theme-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--min-touch-target);
+  height: var(--min-touch-target);
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  color: var(--color-teal);
+  border-color: var(--color-teal);
+}
+
+/* Mobile Hamburger Toggle Button */
+.mobile-nav-toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: var(--min-touch-target);
+  height: var(--min-touch-target);
+  color: var(--color-text-primary);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+/* Mobile Responsive Navigation (Viewport < 768px) */
+@media (max-width: 900px) {
+  .mobile-nav-toggle {
+    display: inline-flex;
+  }
+  
+  .nav-menu {
+    position: fixed;
+    top: var(--nav-height);
+    right: -100%;
+    width: 280px;
+    height: calc(100vh - var(--nav-height));
+    background-color: var(--color-bg-surface);
+    border-left: 1px solid var(--color-border);
+    flex-direction: column;
+    align-items: stretch;
+    padding: var(--space-6) var(--space-4);
+    gap: var(--space-2);
+    box-shadow: var(--shadow-lg);
+    transition: right var(--transition-normal);
+    overflow-y: auto;
+  }
+  
+  .nav-menu.open {
+    right: 0;
+  }
+  
+  .nav-link {
+    width: 100%;
+    padding: var(--space-3) var(--space-4);
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Section Container Styling */
+.section-padding {
+  padding-block: var(--space-16);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.section-header {
+  margin-bottom: var(--space-10);
+}
+
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: var(--font-family-mono);
+  font-size: var(--font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-teal);
+  margin-bottom: var(--space-2);
+}
+
+.section-eyebrow::before {
+  content: '';
+  display: inline-block;
+  width: 16px;
+  height: 2px;
+  background-color: var(--color-teal);
+}
+
+.section-title {
+  font-size: clamp(1.75rem, 3.2vw, 2.5rem);
+  margin-bottom: var(--space-3);
+}
+
+.section-description {
+  max-width: 680px;
+  font-size: var(--font-size-md);
+  color: var(--color-text-secondary);
+}
+
+/* Back-to-Top Button (Fitts's Law: Corner Anchor) */
+.back-to-top-btn {
+  position: fixed;
+  bottom: var(--space-6);
+  right: var(--space-6);
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-bg-surface);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-lg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 900;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(12px);
+  transition: all var(--transition-normal);
+}
+
+.back-to-top-btn.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top-btn:hover {
+  background-color: var(--color-teal);
+  color: var(--color-navy);
+  border-color: var(--color-teal);
+  box-shadow: var(--shadow-teal);
+}
+
+/* Footer Layout */
+.site-footer {
+  padding-block: var(--space-12) var(--space-8);
+  background-color: var(--color-bg-surface);
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  align-items: center;
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .footer-content {
+    flex-direction: row;
+    justify-content: space-between;
+    text-align: left;
+  }
+}
