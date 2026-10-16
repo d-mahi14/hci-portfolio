@@ -1,18 +1,24 @@
 /**
  * SYSTEM USABILITY SCALE (SUS) EVALUATION SUITE
  * 
- * Enhanced with:
- * 1. Dual Scoring Modes:
- *    - Standard Brooke (1996) SUS with alternating polarity
- *    - All-Positive SUS (Sauro & Lewis) where 5 is always positive
- * 2. Visual polarity indicators & per-question score breakdown
- * 3. High-score detection heuristic (alerts user if they selected 5 on negative items)
- * 4. LocalStorage persistence, aggregate stats, and JSON/CSV export
+ * Sources:
+ * - Brooke, J. (1996). SUS: A 'quick and dirty' usability scale.
+ * - Sauro, J., & Lewis, J. R. (2016). Quantifying the User Experience: Practical Statistics for User Research.
+ * 
+ * [HCI - Nielsen #2: Match between system and real world - Honest scoring benchmarks]
+ * [HCI - Nielsen #5: Error prevention via alternating question notice]
+ * [HCI - Nielsen #4 & Shneiderman #1: Consistency - Standard Brooke SUS is default instrument]
+ * 
+ * Benchmarks (Sauro & Lewis 2016 curved grading):
+ * A+ 84.1-100 | A 80.8-84.0 | A- 78.9-80.7 | B+ 77.2-78.8 | B 74.1-77.1 |
+ * B- 72.6-74.0 | C+ 71.1-72.5 | C 65.0-71.0 | C- 62.7-64.9 | D 51.7-62.6 | F 0-51.6
+ * A score of 68 is the industry average (grade C), not "above average".
  */
 
 const SUSController = (function() {
   const STORAGE_KEY = 'mahi_portfolio_sus_evaluations';
-  let currentMode = 'standard'; // 'standard' or 'positive'
+  // Change 2: Standard Brooke SUS is the default and only recommended mode
+  let currentMode = 'standard'; 
 
   const SUS_QUESTIONS = [
     { id: 1, text: "I think that I would like to use this website frequently.", polarity: "positive" },
@@ -22,7 +28,7 @@ const SUSController = (function() {
     { id: 5, text: "I found the various functions in this website were well integrated.", polarity: "positive" },
     { id: 6, text: "I thought there was too much inconsistency in this website.", polarity: "negative", positiveText: "I felt the website was very consistent throughout." },
     { id: 7, text: "I would imagine that most people would learn to use this website very quickly.", polarity: "positive" },
-    { id: 8, text: "I found the website very cumbersome to use.", polarity: "negative", positiveText: "I found the website very straightforward and pleasant to use." },
+    { id: 8, text: "I found the website very cumbersome to use.", polarity: "negative", positiveText: "I found the website very straightforward and comfortable to use." },
     { id: 9, text: "I felt very confident using the website.", polarity: "positive" },
     { id: 10, text: "I needed to learn a lot of things before I could get going with this website.", polarity: "negative", positiveText: "I could get going with this website right away without learning new things." }
   ];
@@ -32,6 +38,29 @@ const SUSController = (function() {
     renderQuestionnaire();
     renderAggregates();
     setupFormListener();
+    setupTooltipEscHandler();
+  }
+
+  function setupTooltipEscHandler() {
+    // WCAG 1.4.13: Esc key dismisses open tooltips
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        document.querySelectorAll('.tooltip-content').forEach(tt => {
+          tt.classList.add('dismissed');
+        });
+      }
+    });
+    // Remove dismissed state when re-entering
+    document.querySelectorAll('.has-tooltip').forEach(elem => {
+      elem.addEventListener('mouseenter', () => {
+        const tt = elem.querySelector('.tooltip-content');
+        if (tt) tt.classList.remove('dismissed');
+      });
+      elem.addEventListener('focusin', () => {
+        const tt = elem.querySelector('.tooltip-content');
+        if (tt) tt.classList.remove('dismissed');
+      });
+    });
   }
 
   function getStoredEvaluations() {
@@ -65,7 +94,7 @@ const SUSController = (function() {
       });
       positiveRadio.addEventListener('change', () => {
         if (positiveRadio.checked) {
-          currentMode = 'positive';
+          currentMode = 'all-positive';
           renderQuestionnaire();
         }
       });
@@ -85,24 +114,20 @@ const SUSController = (function() {
 
     container.innerHTML = SUS_QUESTIONS.map(q => {
       const isNegative = q.polarity === 'negative';
-      const questionText = currentMode === 'positive' && isNegative ? q.positiveText : q.text;
+      const questionText = currentMode === 'all-positive' && isNegative ? q.positiveText : q.text;
 
       let badgeHtml = '';
-      let leftLabel = 'Strongly Disagree';
-      let rightLabel = 'Strongly Agree';
+      let leftLabel = '1 (Strongly Disagree)';
+      let rightLabel = '5 (Strongly Agree)';
 
       if (currentMode === 'standard') {
         if (isNegative) {
-          badgeHtml = '<span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: rgba(244, 63, 94, 0.15); color: var(--color-error); font-weight: 600; margin-left: 6px;">Negative statement: 1 is Best</span>';
-          leftLabel = '1 (Strongly Disagree - Best)';
-          rightLabel = '5 (Strongly Agree - Worst)';
+          badgeHtml = '<span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: rgba(244, 63, 94, 0.15); color: var(--color-error); font-weight: 600; margin-left: 6px;">Negative wording: 1 is best</span>';
         } else {
-          badgeHtml = '<span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: var(--color-teal-glow); color: var(--color-teal); font-weight: 600; margin-left: 6px;">Positive statement: 5 is Best</span>';
-          leftLabel = '1 (Strongly Disagree - Worst)';
-          rightLabel = '5 (Strongly Agree - Best)';
+          badgeHtml = '<span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: var(--color-teal-glow); color: var(--color-teal); font-weight: 600; margin-left: 6px;">Positive wording: 5 is best</span>';
         }
       } else {
-        badgeHtml = '<span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: var(--color-teal-glow); color: var(--color-teal); font-weight: 600; margin-left: 6px;">5 is Always Best</span>';
+        badgeHtml = '<span style="font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; background: rgba(148, 163, 184, 0.2); color: var(--color-text-secondary); font-weight: 500; margin-left: 6px;">All-positive rephrasing</span>';
       }
 
       return `
@@ -135,24 +160,16 @@ const SUSController = (function() {
   function calculateScore(answers, mode) {
     let contributionSum = 0;
     const breakdown = [];
-    let highCountOnNegative = 0;
 
     for (let i = 1; i <= 10; i++) {
       const val = parseInt(answers[`sus-q${i}`], 10);
       let pts = 0;
       const isOdd = (i % 2 !== 0);
 
-      if (mode === 'positive') {
-        // In All-Positive mode, every item is (val - 1)
+      if (mode === 'all-positive') {
         pts = val - 1;
       } else {
-        // Standard Brooke (1996) formula
-        if (isOdd) {
-          pts = val - 1;
-        } else {
-          pts = 5 - val;
-          if (val >= 4) highCountOnNegative++;
-        }
+        pts = isOdd ? (val - 1) : (5 - val);
       }
 
       contributionSum += pts;
@@ -165,17 +182,22 @@ const SUSController = (function() {
     }
 
     const totalScore = Math.round(contributionSum * 2.5 * 10) / 10;
-    const isAllHighInStandard = (mode === 'standard' && highCountOnNegative >= 4);
-
-    return { totalScore, breakdown, isAllHighInStandard, mode };
+    return { totalScore, breakdown, mode };
   }
 
+  // Change 1: Sauro & Lewis (2016) Curved Grading Scale
   function getInterpretation(score) {
-    if (score >= 85) return { grade: "A+", label: "Exceptional Usability (Top 5%)", color: "var(--color-teal)" };
-    if (score >= 80) return { grade: "A", label: "Excellent Usability (Top 10%)", color: "var(--color-teal)" };
-    if (score >= 68) return { grade: "B", label: "Above Average (Industry Benchmark: 68)", color: "var(--color-sky)" };
-    if (score >= 51) return { grade: "C", label: "Average / Marginal", color: "var(--color-warning)" };
-    return { grade: "F", label: "Below Average / Usability Concerns", color: "var(--color-error)" };
+    if (score >= 84.1) return { grade: "A+", label: "Superior Usability (Sauro & Lewis, 2016)", color: "var(--color-teal)" };
+    if (score >= 80.8) return { grade: "A", label: "Excellent Usability", color: "var(--color-teal)" };
+    if (score >= 78.9) return { grade: "A-", label: "Very Good Usability", color: "var(--color-teal)" };
+    if (score >= 77.2) return { grade: "B+", label: "Good Usability", color: "var(--color-sky)" };
+    if (score >= 74.1) return { grade: "B", label: "Solid Usability", color: "var(--color-sky)" };
+    if (score >= 72.6) return { grade: "B-", label: "Above Average (Sauro & Lewis, 2016)", color: "var(--color-sky)" };
+    if (score >= 71.1) return { grade: "C+", label: "Slightly Above Average", color: "var(--color-sky)" };
+    if (score >= 65.0) return { grade: "C", label: "Average (Benchmark: 68 is the industry average)", color: "var(--color-warning)" };
+    if (score >= 62.7) return { grade: "C-", label: "Below Average Usability", color: "var(--color-warning)" };
+    if (score >= 51.7) return { grade: "D", label: "Poor Usability", color: "var(--color-error)" };
+    return { grade: "F", label: "Failing Usability (Urgent Remediation Required)", color: "var(--color-error)" };
   }
 
   function setupFormListener() {
@@ -219,7 +241,7 @@ const SUSController = (function() {
         timestamp: new Date().toISOString(),
         testerName,
         score: result.totalScore,
-        mode: currentMode,
+        mode: currentMode, // "standard" or "all-positive"
         answers,
         comments
       };
@@ -243,15 +265,13 @@ const SUSController = (function() {
     if (!resultBox) return;
 
     const interp = getInterpretation(result.totalScore);
+    const isStandard = (result.mode === 'standard');
 
-    let tipBanner = '';
-    if (result.isAllHighInStandard) {
-      tipBanner = `
-        <div style="background: rgba(56, 189, 248, 0.12); border: 1px solid var(--color-sky); border-radius: var(--radius-md); padding: var(--space-4); margin-top: var(--space-4); text-align: left; font-size: 0.85rem; color: var(--color-text-primary);">
-          <strong>💡 Notice regarding your score:</strong><br>
-          You gave high ratings (4 or 5) across all questions. In standard Brooke SUS, questions 2, 4, 6, 8, and 10 are negative statements (e.g. <em>"unnecessarily complex"</em>, <em>"cumbersome"</em>), so selecting 5 on them means you agreed the site was complex!
-          <br><br>
-          If you meant 5 stars overall (Best), select <strong>"All-Positive Mode (5 = Always Best)"</strong> at the top of the form and re-submit to see your true score (which will be <strong>100 / 100 Grade A+</strong>)!
+    let modeNotice = '';
+    if (!isStandard) {
+      modeNotice = `
+        <div style="background: rgba(245, 158, 11, 0.12); border: 1px solid var(--color-warning); border-radius: var(--radius-md); padding: var(--space-3); margin-top: var(--space-3); text-align: left; font-size: 0.85rem; color: var(--color-text-primary);">
+          <strong>Non-Standard Mode Note:</strong> This score was calculated using all-positive rephrasing for practice. It is stored separately and excluded from official Brooke benchmark aggregates (Sauro & Lewis, 2016).
         </div>
       `;
     }
@@ -272,15 +292,18 @@ const SUSController = (function() {
     resultBox.innerHTML = `
       <div class="sus-score-badge-card" style="border-color: ${interp.color};">
         <span style="font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted);">
-          Calculated Usability Score (${result.mode === 'positive' ? 'All-Positive Mode' : 'Standard Brooke Formula'})
+          Calculated SUS Score (${isStandard ? 'Standard Brooke Instrument' : 'Non-Standard Practice'})
         </span>
         <div class="sus-score-number" style="color: ${interp.color};">${result.totalScore}</div>
-        <div class="sus-score-label">Scale: 0 – 100 Benchmark</div>
+        <div class="sus-score-label">Scale: 0 – 100 (Sauro & Lewis, 2016 curved grading)</div>
         <div class="sus-grade-pill" style="background-color: ${interp.color}; color: #0F172A;">
           Grade ${interp.grade}: ${interp.label}
         </div>
+        <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: var(--space-2); margin-bottom: 0;">
+          A score of 68 is the industry average (grade C), not 'above average'. Scores &gt; 71 represent above-average usability.
+        </p>
 
-        ${tipBanner}
+        ${modeNotice}
 
         <details style="margin-top: var(--space-4); width: 100%; text-align: left; background: var(--color-bg-base); border-radius: var(--radius-md); padding: var(--space-3); border: 1px solid var(--color-border);">
           <summary style="cursor: pointer; font-weight: 600; color: var(--color-teal); font-size: 0.85rem;">
@@ -302,7 +325,7 @@ const SUSController = (function() {
             </table>
           </div>
           <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--space-2); margin-bottom: 0;">
-            Total Score = Sum of Points (${result.breakdown.reduce((a, b) => a + b.pts, 0)}) × 2.5 = <strong>${result.totalScore}</strong>.
+            Formula: Sum of Points (${result.breakdown.reduce((a, b) => a + b.pts, 0)}) &times; 2.5 = <strong>${result.totalScore}</strong>.
           </p>
         </details>
       </div>
@@ -310,74 +333,120 @@ const SUSController = (function() {
     resultBox.style.display = 'block';
   }
 
+  // Change 2: The aggregate (average, min, max, count) uses ONLY mode === "standard" responses!
   function renderAggregates() {
     const container = document.getElementById('sus-aggregates-container');
     if (!container) return;
 
-    const evals = getStoredEvaluations();
-    if (evals.length === 0) {
+    const allEvals = getStoredEvaluations();
+    const standardEvals = allEvals.filter(e => e.mode === 'standard' || !e.mode);
+    const nonStandardEvals = allEvals.filter(e => e.mode === 'all-positive');
+
+    if (standardEvals.length === 0 && nonStandardEvals.length === 0) {
       container.innerHTML = `
         <div style="background: var(--color-bg-elevated); padding: var(--space-4); border-radius: var(--radius-md); text-align: center;">
           <p style="color: var(--color-text-muted); font-size: 0.9rem; margin-bottom: 0;">
-            No evaluations recorded yet. Fill the scale above or collect tests from your 5 participants.
+            No evaluations recorded yet. Complete the questionnaire above to evaluate usability.
           </p>
         </div>
       `;
       return;
     }
 
-    const scores = evals.map(e => e.score);
-    const count = scores.length;
-    const avg = Math.round((scores.reduce((a, b) => a + b, 0) / count) * 10) / 10;
-    const min = Math.min(...scores);
-    const max = Math.max(...scores);
-    const avgInterp = getInterpretation(avg);
+    let standardDashboardHtml = '';
+    if (standardEvals.length > 0) {
+      const scores = standardEvals.map(e => e.score);
+      const count = scores.length;
+      const avg = Math.round((scores.reduce((a, b) => a + b, 0) / count) * 10) / 10;
+      const min = Math.min(...scores);
+      const max = Math.max(...scores);
+      const avgInterp = getInterpretation(avg);
+
+      standardDashboardHtml = `
+        <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); margin-bottom: var(--space-4);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4); flex-wrap: wrap; gap: var(--space-2);">
+            <div>
+              <h4 style="margin: 0;">Benchmark Aggregate: Standard Brooke SUS (N = ${count})</h4>
+              <span style="font-size: 0.75rem; color: var(--color-text-muted);">Validated benchmark instrument only</span>
+            </div>
+            <span class="sus-grade-pill" style="background-color: ${avgInterp.color}; color: #0F172A;">
+              Avg Grade: ${avgInterp.grade}
+            </span>
+          </div>
+          
+          <table class="aggregate-stats-table">
+            <tbody>
+              <tr>
+                <th>Standard Evaluations Count</th>
+                <td>${count} participant${count > 1 ? 's' : ''}</td>
+              </tr>
+              <tr>
+                <th>Mean SUS Score</th>
+                <td style="color: ${avgInterp.color}; font-size: 1.1rem;">${avg} / 100</td>
+              </tr>
+              <tr>
+                <th>Minimum Score</th>
+                <td>${min}</td>
+              </tr>
+              <tr>
+                <th>Maximum Score</th>
+                <td>${max}</td>
+              </tr>
+              <tr>
+                <th>Benchmark Interpretation</th>
+                <td style="font-weight: 500; font-family: inherit;">${avgInterp.label}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-top: var(--space-3); margin-bottom: 0;">
+            Benchmark standard: A score of 68 is the industry average (grade C), not 'above average'. Scores &gt; 71 indicate above-average usability.
+          </p>
+        </div>
+      `;
+    } else {
+      standardDashboardHtml = `
+        <div style="background: var(--color-bg-elevated); padding: var(--space-4); border-radius: var(--radius-md); text-align: center; margin-bottom: var(--space-4);">
+          <p style="color: var(--color-text-muted); font-size: 0.85rem; margin-bottom: 0;">
+            No Standard Brooke SUS evaluations recorded yet. (Only standard responses are included in the benchmark aggregate).
+          </p>
+        </div>
+      `;
+    }
+
+    let nonStandardHtml = '';
+    if (nonStandardEvals.length > 0) {
+      nonStandardHtml = `
+        <div style="background: var(--color-bg-surface); border: 1px dashed var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4); margin-bottom: var(--space-4);">
+          <h5 style="margin: 0 0 var(--space-2) 0; color: var(--color-text-muted); font-size: 0.85rem;">
+            Separate Non-Standard Practice Submissions (N = ${nonStandardEvals.length}) &bull; Not Comparable to SUS Benchmarks
+          </h5>
+          <ul style="padding-left: var(--space-4); margin: 0; font-size: 0.8rem; color: var(--color-text-secondary);">
+            ${nonStandardEvals.map(e => `<li><strong>${e.testerName}:</strong> Score ${e.score} (${new Date(e.timestamp).toLocaleDateString()})</li>`).join('')}
+          </ul>
+        </div>
+      `;
+    }
 
     container.innerHTML = `
-      <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6);">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-4);">
-          <h4 style="margin: 0;">Aggregate Tester Benchmark (N = ${count})</h4>
-          <span class="sus-grade-pill" style="background-color: ${avgInterp.color}; color: #0F172A;">
-            Avg Grade: ${avgInterp.grade}
-          </span>
-        </div>
-        
-        <table class="aggregate-stats-table">
-          <tbody>
-            <tr>
-              <th>Total Evaluations</th>
-              <td>${count} / 5 Target Testers</td>
-            </tr>
-            <tr>
-              <th>Mean SUS Score</th>
-              <td style="color: ${avgInterp.color}; font-size: 1.1rem;">${avg} / 100</td>
-            </tr>
-            <tr>
-              <th>Minimum Score</th>
-              <td>${min}</td>
-            </tr>
-            <tr>
-              <th>Maximum Score</th>
-              <td>${max}</td>
-            </tr>
-            <tr>
-              <th>Usability Interpretation</th>
-              <td style="font-weight: 500; font-family: inherit;">${avgInterp.label}</td>
-            </tr>
-          </tbody>
-        </table>
+      ${standardDashboardHtml}
+      ${nonStandardHtml}
 
-        <div class="sus-export-actions">
+      <div class="sus-export-actions">
+        <div class="has-tooltip">
           <button type="button" class="btn btn-secondary btn-sm" id="export-sus-json-btn">
-            ↓ Export JSON
+            &darr; Export JSON
           </button>
-          <button type="button" class="btn btn-secondary btn-sm" id="export-sus-csv-btn">
-            ↓ Export CSV
-          </button>
-          <button type="button" class="btn btn-outline btn-sm" id="clear-sus-btn" style="color: var(--color-error); border-color: rgba(244, 63, 94, 0.3);">
-            Reset Data
-          </button>
+          <div class="tooltip-content" role="tooltip">Download full evaluation records (includes mode and raw responses) in JSON format.</div>
         </div>
+        <div class="has-tooltip">
+          <button type="button" class="btn btn-secondary btn-sm" id="export-sus-csv-btn">
+            &darr; Export CSV
+          </button>
+          <div class="tooltip-content" role="tooltip">Export evaluation table as CSV for spreadsheet and statistical analysis.</div>
+        </div>
+        <button type="button" class="btn btn-outline btn-sm" id="clear-sus-btn" style="color: var(--color-error); border-color: rgba(244, 63, 94, 0.3);">
+          Reset Data
+        </button>
       </div>
     `;
 

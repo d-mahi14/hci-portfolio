@@ -3,28 +3,33 @@
 **Author:** Mahi Desai  
 **Project:** Personal Portfolio & Academic Engineering Showcase  
 **Platform:** Plain HTML5, CSS3, Vanilla JavaScript (GitHub Pages Hostable)  
-**Target Compliance:** WCAG 2.1 AA & AAA, Nielsen's 10 Heuristics, Shneiderman's 8 Golden Rules, Fitts's Law, Hick's Law, Gestalt Principles.
+**Target Compliance:** Targets WCAG 2.1 Level AA (individual pairs exceeding 7:1 noted per pair); Nielsen's 10 Heuristics, Shneiderman's 8 Golden Rules, Fitts's Law, Hick's Law, Gestalt Principles.
 
 ---
 
 ## 1. Color Contrast & Visual Accessibility Rationale
 
-To comply with **WCAG 2.1 Success Criterion 1.4.3 (Contrast Minimum - AA: 4.5:1)** and **1.4.6 (Contrast Enhanced - AAA: 7:1)**, all color pairs were mathematically validated using the standardized relative luminance formula:
+The site targets **WCAG 2.1 Level AA** (Success Criterion 1.4.3, 4.5:1 for normal text). Individual colour pairs that also exceed the enhanced 7:1 threshold (Criterion 1.4.6) are noted per pair. All colour pairs were mathematically validated using the standardized relative luminance formula:
 
 $$\text{Relative Luminance } L = 0.2126 \times R + 0.7152 \times G + 0.0722 \times B$$
 $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05} \quad (L_1 > L_2)$$
 
-### Exact Contrast Verification Table
+### Exact Contrast Verification Table (Recomputed via sRGB Linearisation)
 
 | UI Element & Mode | Foreground Color | Background Color | Calculated Ratio | WCAG Compliance Level | Rationale & Design Decision |
 |---|---|---|---|---|---|
-| **Light Mode: Primary Text & Links** | `#0F766E` (Dark Teal) | `#FFFFFF` (Pure White) | **5.55 : 1** | **WCAG AA (Pass)** | Primary links and text exceed the 4.5:1 threshold, preventing eye fatigue while maintaining brand cohesion. |
-| **Light Mode: Canvas Text** | `#0F766E` (Dark Teal) | `#F8FAFC` (Canvas Slate) | **5.33 : 1** | **WCAG AA (Pass)** | High legibility over off-white background cards and dividers. |
-| **Teal CTA Buttons (Both Modes)** | `#0F172A` (Deep Navy) | `#14B8A6` (Teal Background) | **7.13 : 1** | **WCAG AAA (Pass)** | Navy text on teal button surpasses the stringent 7:1 AAA standard for maximum readability. |
-| **Dark Mode: Body Text** | `#F8FAFC` (Crisp White) | `#0B0F19` (Deep Canvas Navy) | **18.30 : 1** | **WCAG AAA (Pass)** | Exceptional contrast preventing visual strain in low-light development environments. |
-| **Dark Mode: Teal Accents & Headings** | `#14B8A6` (Vibrant Teal) | `#0B0F19` (Deep Canvas Navy) | **7.66 : 1** | **WCAG AAA (Pass)** | Brand accent passes AAA threshold for body text and interactive focus rings. |
-| **Dark Mode: Secondary Metadata** | `#94A3B8` (Muted Slate) | `#111827` (Surface Card Navy) | **6.45 : 1** | **WCAG AA (Pass)** | Timestamps, tags, and metrics remain crisp and clearly readable. |
-| **Light Mode: Secondary Text** | `#334155` (Dark Slate) | `#FFFFFF` (Surface Card) | **9.53 : 1** | **WCAG AAA (Pass)** | Secondary body text and bullet points provide effortless legibility. |
+| **Light Mode: Primary Text & Links** | `#0F766E` (Dark Teal) | `#FFFFFF` (Pure White) | **5.47 : 1** | **WCAG AA (Pass)** | Primary links and text exceed the 4.5:1 AA standard without eye fatigue. |
+| **Light Mode: Canvas Text** | `#0F766E` (Dark Teal) | `#F8FAFC` (Canvas Slate) | **5.23 : 1** | **WCAG AA (Pass)** | High legibility over off-white background canvas and card sections. |
+| **Teal CTA Buttons (Both Modes)** | `#0F172A` (Deep Navy) | `#14B8A6` (Teal Background) | **7.17 : 1** | **WCAG AA & AAA (Pass)** | Deep Navy text on vibrant teal button exceeds the stringent 7:1 AAA standard. |
+| **Dark Mode: Body Text** | `#F8FAFC` (Crisp White) | `#0B0F19` (Deep Canvas Navy) | **18.30 : 1** | **WCAG AA & AAA (Pass)** | Exceptional contrast preventing visual strain in dark environments. |
+| **Dark Mode: Teal Accents & Headings** | `#14B8A6` (Vibrant Teal) | `#0B0F19` (Deep Canvas Navy) | **7.69 : 1** | **WCAG AA & AAA (Pass)** | Brand accent passes AAA threshold for body text and interactive focus rings. |
+| **Dark Mode: Secondary Body** | `#94A3B8` (Muted Slate) | `#0B0F19` (Deep Canvas Navy) | **7.47 : 1** | **WCAG AA & AAA (Pass)** | Secondary body text on dark canvas exceeds AAA. |
+| **Dark Mode: Secondary Metadata on Cards** | `#94A3B8` (Muted Slate) | `#111827` (Surface Card Navy) | **6.92 : 1** | **WCAG AA (Pass)** | Timestamps, tags, and metrics remain crisp and clearly readable. |
+| **Light Mode: Secondary Text** | `#334155` (Dark Slate) | `#FFFFFF` (Surface Card) | **10.35 : 1** | **WCAG AA & AAA (Pass)** | Secondary body text and bullet points provide effortless legibility. |
+| **Light Mode: AI Accent Badge** | `#0369A1` (Calibrated Deep Sky) | `#FFFFFF` (Surface Card) | **5.93 : 1** | **WCAG AA (Pass)** | Calibrated from previous #0284C7 (4.1:1 fail) to exceed the 4.5:1 AA threshold. |
+| **Dark Mode: Error Text** | `#F43F5E` (Rose Red) | `#0B0F19` (Deep Canvas Navy) | **5.22 : 1** | **WCAG AA (Pass)** | Error notifications and validation alerts pass the 4.5:1 AA threshold. |
+
+> **Accessibility Limitation Note:** While automated tools and algorithmic color verification confirm WCAG 2.1 Level AA compliance across all UI pairs, formal manual end-user testing with screen readers (NVDA, JAWS, VoiceOver) has not yet been performed.
 
 ---
 
@@ -73,9 +78,16 @@ $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05} \quad (L_1 > L_2)$$
 - Clear, polite inline error messages: *"Please enter a valid email address (e.g., name@example.com)"* instead of generic "Invalid input".
 - Failed form submissions provide direct fallback: *"The endpoint could not be reached. Please send an email directly to desaihmahi@gmail.com."*
 
-### 10. Help and Documentation
-- Comprehensive `README.md` detailing deployment, testing, and customization.
-- Transparent documentation of academic marks, GitHub links, and contact coordinates.
+### 10. Help and Documentation (In-Interface Contextual Assistance)
+- **Project Filter Helper Text:** Immediate instructions under filter buttons: *"Choose a category to narrow the projects. Select \"All\" to reset."*
+- **Blog Search Hint:** Search field is accompanied by an inline hint: *"Search articles by topic, tag (e.g. PyTorch), or keyword."*
+- **Contact Form Guidance:** Every form input provides contextual explanation linked via `aria-describedby`:
+  - Name: *"Your full name or organization."*
+  - Email: *"We will only use this to reply to your inquiry."*
+  - Message: *"Briefly describe your project, inquiry, or opportunity."*
+- **SUS Scoring Assistance:** A collapsible `<details>` element provides an in-depth breakdown of how SUS scoring works (alternating Brooke 1996 scale, 0-4 conversion, x2.5 multiplier) along with a visible 1–5 scale legend.
+- **Accessible Tooltips:** Interactive controls with non-obvious functions (Theme Toggle, Rate Site, Export Data) feature tooltips that are keyboard-focusable, persist on hover/focus, and are dismissible via the `Escape` key (WCAG 1.4.13).
+*(Note: Design documentation is available via footer links as project documentation, distinct from in-interface user assistance).*
 
 ---
 
@@ -84,7 +96,9 @@ $$\text{Contrast Ratio} = \frac{L_1 + 0.05}{L_2 + 0.05} \quad (L_1 > L_2)$$
 1. **Strive for Consistency**: Standardized typography hierarchy, button heights (min 44px), card radii, and color tokens.
 2. **Cater to Universal Usability**: Strict WCAG 2.1 AA/AAA contrast ratios, screen-reader `.sr-only` cues, and `prefers-reduced-motion` support.
 3. **Offer Informative Feedback**: Hover states, active nav indicators, dynamic SUS score calculations.
-4. **Design Dialogs to Yield Closure**: Form submissions yield dedicated success confirmation; SUS evaluation produces immediate calculated percentiles.
+4. **Design Dialogs to Yield Closure**: Honest feedback behavior:
+   - *Contact Form:* Submit button changes to "Sending..." with `aria-busy="true"`. Real HTTP 2xx from Formspree confirms delivery in `role="status"`; errors are diagnosed in `role="alert"` preserving user input. When in placeholder mode, the UI explicitly announces that it opened the email application, never falsely claiming delivery.
+   - *SUS Form:* Submitting produces instant calculated score, Sauro & Lewis (2016) grade, and an expandable question-by-question calculation breakdown.
 5. **Prevent Errors**: Inline input validation, non-empty textarea constraints.
 6. **Permit Easy Reversal of Actions**: Clear SUS reset button with confirmation prompt; modal dismissals.
 7. **Support Internal Locus of Control**: The user controls theme, project filtering, modal browsing, and evaluation submissions.

@@ -1,9 +1,16 @@
 /**
- * CONTACT FORM VALIDATION & INTELLIGENT DISPATCH
+ * CONTACT FORM VALIDATION & HONEST CLOSURE DISPATCH
  * 
- * Sourced strictly for desaihmahi@gmail.com
- * Provides immediate pre-filled email dispatch via mailto.
- * If a Formspree ID is later supplied, it seamlessly switches to background AJAX.
+ * [HCI - Shneiderman #4: Design dialogs to yield closure]
+ * [HCI - Nielsen #1: Visibility of system status]
+ * [HCI - Nielsen #9: Help users recognize, diagnose, and recover from errors]
+ * [HCI - WCAG 4.1.3: Status messages via role="status" and role="alert"]
+ * 
+ * Real Behavior Implementation:
+ * a) While sending: disables submit button, displays "Sending..." with aria-busy="true".
+ * b) On confirmed HTTP 2xx from Formspree API: displays inline confirmed success message in role="status", clears form, shifts focus to status.
+ * c) On failure/network error: shows error in role="alert", preserves user's typed input, provides mailto fallback link.
+ * d) If placeholder endpoint is active (mailto dispatch): explicitly states that it opens the user's email app, and NEVER claims "Message delivered" or "Message sent".
  */
 
 const ContactController = (function() {
@@ -51,7 +58,7 @@ const ContactController = (function() {
         errorMsg = 'Please enter your email address.';
       } else if (!emailRegex.test(input.value.trim())) {
         isValid = false;
-        errorMsg = 'Please enter a valid email address.';
+        errorMsg = 'Please enter a valid email address (e.g. name@domain.com).';
       }
     } else if (input.id === 'contact-message') {
       if (!input.value.trim()) {
@@ -103,7 +110,9 @@ const ContactController = (function() {
       return;
     }
 
+    // [HCI - Nielsen #1: Visibility of system status]
     submitBtn.disabled = true;
+    submitBtn.setAttribute('aria-busy', 'true');
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.innerHTML = '<span>Sending...</span>';
     
@@ -117,11 +126,10 @@ const ContactController = (function() {
       errorBanner.className = 'form-feedback-banner';
     }
 
-    // Check if endpoint is still placeholder
     const isPlaceholder = FORMSPREE_ENDPOINT.includes('placeholder_form_id');
 
+    // Case D: Only mailto is configured -> Honest closure: tell user it opens their email app
     if (isPlaceholder) {
-      // Trigger default email app with pre-filled content
       const subject = encodeURIComponent('Portfolio Inquiry from ' + nameInput.value.trim());
       const body = encodeURIComponent(
         messageInput.value.trim() + 
@@ -132,23 +140,24 @@ const ContactController = (function() {
 
       window.location.href = mailtoUrl;
 
+      // Honest closure: never say "message delivered"
       if (successBanner) {
         successBanner.className = 'form-feedback-banner success';
         successBanner.innerHTML = `
-          <strong>✓ Message drafted!</strong><br>
-          Your email application has been opened with your message ready to send to <strong>${TARGET_EMAIL}</strong>.
+          <strong>✓ Opening your email application...</strong><br>
+          This drafts your message addressed to <strong>${TARGET_EMAIL}</strong> in your default email client. Please click 'Send' in your mail program to complete delivery.
         `;
         successBanner.style.display = 'block';
         successBanner.focus();
       }
 
       submitBtn.disabled = false;
+      submitBtn.removeAttribute('aria-busy');
       submitBtn.innerHTML = originalBtnText;
-      form.reset();
       return;
     }
 
-    // If real Formspree endpoint is configured, send via AJAX
+    // Case B & C: Real Formspree service configured
     try {
       const formData = new FormData(form);
       const response = await fetch(FORMSPREE_ENDPOINT, {
@@ -158,25 +167,27 @@ const ContactController = (function() {
       });
 
       if (response.ok) {
+        // Case B: Confirmed HTTP 2xx delivery
         if (successBanner) {
           successBanner.className = 'form-feedback-banner success';
-          successBanner.innerHTML = '✓ Thank you! Your message was delivered successfully. I will get back to you shortly.';
+          successBanner.innerHTML = '<strong>✓ Message delivered successfully!</strong> Thank you for reaching out; I will respond to your inquiry shortly.';
           successBanner.style.display = 'block';
           successBanner.focus();
         }
         form.reset();
       } else {
-        throw new Error(`Server returned HTTP ${response.status}`);
+        throw new Error(`Server returned status ${response.status}`);
       }
     } catch (err) {
-      console.warn('Submission error:', err.message);
+      // Case C: Failure/Network error -> preserve input, offer mailto fallback
+      console.warn('Formspree dispatch error:', err.message);
       if (errorBanner) {
         const subject = encodeURIComponent('Portfolio Inquiry from ' + nameInput.value.trim());
         const body = encodeURIComponent(messageInput.value.trim());
         errorBanner.className = 'form-feedback-banner error';
         errorBanner.innerHTML = `
-          <strong>Message could not be sent directly.</strong><br>
-          Please send an email directly to: 
+          <strong>Message could not be sent through web endpoint (${err.message}).</strong><br>
+          Your typed message has been retained above. You can send it directly via email to: 
           <a href="mailto:${TARGET_EMAIL}?subject=${subject}&body=${body}" style="text-decoration: underline; font-weight: 700; color: inherit;">
             ${TARGET_EMAIL}
           </a>.
@@ -186,6 +197,7 @@ const ContactController = (function() {
       }
     } finally {
       submitBtn.disabled = false;
+      submitBtn.removeAttribute('aria-busy');
       submitBtn.innerHTML = originalBtnText;
     }
   }

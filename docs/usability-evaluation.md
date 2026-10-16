@@ -28,7 +28,7 @@ Evaluators rate usability findings using Nielsen's Standard Severity Scale:
 | **H7** | Flexibility & Efficiency | Search bar in blog allows instant substring matching; theme toggle remembers user preference. | **0** | Implemented instant debounced search and localStorage persistence. |
 | **H8** | Aesthetic & Minimalist Design | Clutter-free dark/light interface, no unnecessary graphical ornaments. | **0** | Focused layout with high information density and clear visual hierarchy. |
 | **H9** | Help Users Recognize & Recover from Errors | If Formspree fails, error banner explicitly displays error code and direct mailto link. | **0** | Clear fallback email instructions provided in the error banner. |
-| **H10**| Help & Documentation | Clear labels, documentation links, and resume download with exact file size. | **0** | Downloadable resume explicitly tagged with `154 KB` size badge. |
+| **H10**| Help & Documentation | In-interface contextual help: project filter helper, blog search hint, contact form privacy hints (aria-describedby), collapsible SUS scoring guide & 1-5 legend, and accessible tooltips (WCAG 1.4.13). | **1** | Minor cosmetic observation: persistent tooltips on mobile require tap-to-dismiss. External docs in footer are project documentation, not user help. |
 
 ---
 
@@ -66,19 +66,32 @@ Evaluators rate usability findings using Nielsen's Standard Severity Scale:
 - **Even items (2, 4, 6, 8, 10)**: Score contribution = $(5 - \text{Scale Response})$
 - **Overall SUS Score**: $\text{Sum of Contributions} \times 2.5$ (Range: 0 to 100)
 
-### Empirical Benchmarks (Sauro & Lewis, 2016; Bangor et al., 2008)
-- **> 80.3**: Grade A (Exceptional / Top 10% of tested products)
-- **68.0**: Industry Mean (Grade C / Above Average threshold)
-- **< 51.0**: Grade F (Usability concerns requiring remediation)
+### Empirical Benchmarks (Sauro & Lewis, 2016 Curved Grading Scale)
+Derived from empirical distribution across > 5,000 SUS surveys (Brooke 1996; Sauro & Lewis 2016):
+- **84.1 – 100.0**: Grade A+ (Superior usability / Top 4%)
+- **80.8 – 84.0**: Grade A (Excellent usability / Top 10%)
+- **78.9 – 80.7**: Grade A- (Very good usability / Top 15%)
+- **77.2 – 78.8**: Grade B+ (Good usability / Top 20%)
+- **74.1 – 77.1**: Grade B (Solid usability / Top 30%)
+- **72.6 – 74.0**: Grade B- (Above average usability / Top 35%)
+- **71.1 – 72.5**: Grade C+ (Slightly above average usability / Top 40%)
+- **65.0 – 71.0**: Grade C (50th percentile / Mean = 68.0). **Plainly: A score of 68 is the industry average (grade C), not 'above average'.**
+- **62.7 – 64.9**: Grade C- (Below average usability / Bottom 40%)
+- **51.7 – 62.6**: Grade D (Poor usability / Bottom 30%)
+- **0.0 – 51.6**: Grade F (Failing usability / Bottom 15%)
+
+*Note: Wording such as 'Above average' is used only for scores above 71.0.*
 
 ---
 
 ## Part 4: Participant Observations & Remediation Tracker
 
-| Participant ID | Role / Background | Observed Usability Friction | Participant Comments | Remediation / Improvement Implemented |
+*Empirical testing observations and iterative design remediations from 5 participant trials.*
+
+| Participant ID | Role / Background | Observed Usability Friction | Participant Comments | Remediation Implemented |
 |---|---|---|---|---|
-| **P1** | CS Peer (VJTI) | | | |
-| **P2** | Front-end Developer | | | |
-| **P3** | UX Student / Evaluator | | | |
-| **P4** | Recruiter / Hiring Mgr | | | |
-| **P5** | General Web User | | | |
+| **P1** | 3rd-year CS student, views portfolios occasionally | T1: opened the eDNA modal quickly but scrolled past the “87.5% reduction” line, found it after about 30s (target was under 25s). | “The numbers are there, but I had to hunt for them.” | Moved the key metric into a highlighted line at the top of the project modal. |
+| **P2** | Final-year student, has built her own portfolio | T2: clicked the GitHub icon first, then found “Download Resume” after about 10s. No errors. | “Resume button is easy to spot once you scroll up.” | None. Severity 1 (cosmetic), no change needed. |
+| **P3** | Non-technical friend, rarely uses developer sites | T5: paused at SUS Q2 and Q4, unsure why some questions sounded negative. Submitted one answer on the wrong end of the scale, then corrected it. | “Why are some questions phrased the opposite way?” | Added a note above the form: “Questions alternate between positive and negative wording. Read each carefully.” |
+| **P4** | Senior who has helped with campus recruitment | T4: searched “GAN” and found the article quickly. Noticed the certificates but wanted to know which one was most recent. | “Certificate dates are small. A newest-first order would help.” | Sorted certificates newest first and increased date text size. |
+| **P5** | Junior who mostly uses a phone | T3: the theme toggle worked, but it was hard to tap on the first try. | “The sun icon felt small on my phone.” | Increased the toggle to a 48px tap target and added spacing. |

@@ -4,7 +4,7 @@
  * [HCI - Shneiderman #1: Strive for consistency]
  * Unified tokenized palette, typography, spacing, and elevation scale.
  * 
- * [HCI - Accessibility WCAG 2.1 AA & AAA]
+ * [HCI - Accessibility: Targets WCAG 2.1 Level AA; select pairs exceed AAA (7:1)]
  * - Light-mode primary text/links: #0F766E on #FFFFFF (5.55:1) & on #F8FAFC (5.33:1) -> Passes AA
  * - Dark-mode primary text: #F8FAFC on #0B0F19 (18.3:1) -> Passes AAA
  * - Teal button: #0F172A (dark navy) on #14B8A6 (teal) (7.13:1) -> Passes AAA
@@ -40,7 +40,7 @@
   --color-border: rgba(148, 163, 184, 0.14);
   --color-border-focus: #14B8A6;
   
-  /* Button Contrast Pairings (Verified WCAG AAA: 7.13:1) */
+  /* Button Contrast Pairings (Exceeds WCAG AAA threshold: 7.17:1) */
   --btn-teal-bg: #14B8A6;
   --btn-teal-text: #0F172A;
   
@@ -123,7 +123,7 @@
   --color-link: #0F766E;
   --color-link-hover: #115E59;
   
-  /* Button stays vibrant teal with dark navy text (7.13:1 AAA) */
+  /* Button stays vibrant teal with dark navy text (7.17:1 exceeds AAA) */
   --btn-teal-bg: #14B8A6;
   --btn-teal-text: #0F172A;
   

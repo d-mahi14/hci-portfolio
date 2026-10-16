@@ -16,7 +16,6 @@ const PROFILE_DATA = {
     subtitle: "Computer Engineering student | Deep Learning, Generative AI & Full-Stack Development",
     bio: "I'm Mahi Desai, a third-year Computer Engineering student at VJTI, Mumbai, focused on Artificial Intelligence, Machine Learning, and Full-Stack Development. I like turning messy, real-world problems into working systems, whether that's clustering 20,000+ DNA sequences to discover new species, matching candidates to jobs with LLMs, or generating handwriting with GANs. I'm an active member of ProjectX and a Hacktoberfest SuperContributor, where I've learned the value of collaboration and open source. I'm currently looking for internships and research opportunities where I can build AI-powered products and keep growing as an engineer.",
     email: "desaihmahi@gmail.com",
-    phone: "+91 8779316909",
     location: "Mumbai, India",
     avatar: "contents/photo.jpg",
     resumeUrl: "Mahi_Desai_Resume.pdf",
@@ -74,18 +73,18 @@ const PROFILE_DATA = {
 
     certifications: [
     {
-      title: "Generative and Agentic AI",
-      issuer: "Specialized Coursework",
-      date: "Apr. 2026",
-      topics: "LLMs, RAG, AI agents, multimodal AI, and responsible AI",
-      certificateUrl: "https://www.coursera.org/account/accomplishments/verify/87BG52WF37FA"
-    },
-    {
       title: "AWS Cloud Practitioner Essentials",
       issuer: "AWS Training & Certification",
       date: "Sep. 2026",
       topics: "Core AWS services, cloud security, architecture, pricing, and cloud concepts",
       certificateUrl: "https://drive.google.com/file/d/1q45Fu52F-SsG8PN8n-scOBRR_DdpBPPi/view"
+    },
+    {
+      title: "Generative and Agentic AI",
+      issuer: "Specialized Coursework",
+      date: "Apr. 2026",
+      topics: "LLMs, RAG, AI agents, multimodal AI, and responsible AI",
+      certificateUrl: "https://www.coursera.org/account/accomplishments/verify/87BG52WF37FA"
     },
     {
       title: "Neural Networks and Deep Learning",
@@ -131,6 +130,7 @@ const PROFILE_DATA = {
     projects: [
     {
       id: "joblink",
+      highlightMetric: "85–99% Match Confidence Score • 14+ REST Endpoints with Supabase RLS",
       title: "JobLink: AI-Powered Job Matching Platform",
       category: "Full-Stack",
       period: "Dec. 2025 - Feb. 2026",
@@ -156,6 +156,7 @@ const PROFILE_DATA = {
     },
     {
       id: "edna",
+      highlightMetric: "87.5% Dimensionality Reduction (256-dim to 32-dim Latent Space)",
       title: "Assessing Biodiversity from eDNA Datasets",
       category: "AI/ML",
       period: "Aug. 2025 - Nov. 2025",
@@ -181,6 +182,7 @@ const PROFILE_DATA = {
     },
     {
       id: "text-to-handwriting",
+      highlightMetric: "1,539 Pages / 657 Writers Synthesized • 0.0132 Word Recogniser Loss",
       title: "Text-to-Handwriting via Conditional GANs",
       category: "Deep Learning",
       period: "Jul. 2025 - Oct. 2025",

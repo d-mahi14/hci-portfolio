@@ -132,11 +132,22 @@ const ProjectsController = (function() {
     if (!modalBackdrop || !modalContent) return;
 
     modalContent.innerHTML = `
-      <div style="margin-bottom: var(--space-4);">
+      <div style="margin-bottom: var(--space-3);">
         <span class="project-category-tag">${project.category}</span>
-        <h2 id="modal-project-title" style="margin-top: var(--space-2);">${project.title}</h2>
+        <h2 id="modal-project-title" style="margin-top: var(--space-2); margin-bottom: var(--space-1);">${project.title}</h2>
         <span class="project-period">${project.period}</span>
       </div>
+
+      <!-- Usability Evaluation Remediation P1: Highlighted key metric line at top of modal -->
+      ${(project.highlightMetric || (project.metrics && project.metrics.length > 0)) ? `
+        <div class="modal-highlighted-metric-banner" style="background: rgba(20, 184, 166, 0.12); border: 1px solid var(--color-teal); border-left: 5px solid var(--color-teal); padding: var(--space-3) var(--space-4); border-radius: var(--radius-md); margin-bottom: var(--space-4); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--space-2);">
+          <div style="display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap;">
+            <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700; color: var(--color-teal); background: rgba(20, 184, 166, 0.2); padding: 2px 8px; border-radius: var(--radius-sm);">★ Key Metric</span>
+            <strong style="font-size: 1.05rem; color: var(--color-text-primary); font-family: var(--font-family-mono); font-weight: 700;">${project.highlightMetric || `${project.metrics[0].label}: ${project.metrics[0].value}`}</strong>
+          </div>
+          <span class="badge" style="background: var(--color-teal); color: #0F172A; font-weight: 700; font-size: 0.75rem; padding: 2px 8px; border-radius: 9999px;">Verified</span>
+        </div>
+      ` : ''}
 
       <div class="project-thumb-container" style="height: 240px; border-radius: var(--radius-md); margin-bottom: var(--space-4); background-color: var(--color-bg-elevated);">
         ${project.image ? `

@@ -118,23 +118,29 @@
   gap: var(--space-2);
 }
 
-/* Theme Toggle Button (Fitts's Law >= 44x44px) */
+/* Theme Toggle Button (Fitts's Law >= 48px tap target per Usability Remediation P5) */
 .theme-toggle-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: var(--min-touch-target);
-  height: var(--min-touch-target);
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
+  min-height: 48px;
+  margin: 0 var(--space-1);
+  padding: var(--space-2);
   border-radius: var(--radius-md);
   color: var(--color-text-secondary);
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border);
+  font-size: 1.25rem;
   transition: all var(--transition-fast);
 }
 
 .theme-toggle-btn:hover {
   color: var(--color-teal);
   border-color: var(--color-teal);
+  transform: scale(1.05);
 }
 
 /* Mobile Hamburger Toggle Button */

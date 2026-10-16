@@ -23,24 +23,41 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /**
- * THEME CONTROLLER (Dark/Light with localStorage persistence)
+ * THEME CONTROLLER (Dark/Light with localStorage persistence & cross-page sync)
  */
 function initTheme() {
   const themeToggleBtn = document.getElementById('theme-toggle-btn');
+  const urlParams = new URLSearchParams(window.location.search);
+  const urlTheme = urlParams.get('theme');
   const storedTheme = localStorage.getItem('mahi_theme_preference');
   const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
   
-  const activeTheme = storedTheme || (systemPrefersDark ? 'dark' : 'light');
+  const activeTheme = urlTheme || storedTheme || (systemPrefersDark ? 'dark' : 'light');
   setTheme(activeTheme);
+  if (urlTheme) {
+    try {
+      localStorage.setItem('mahi_theme_preference', urlTheme);
+    } catch (e) {}
+  }
 
   if (themeToggleBtn) {
-    themeToggleBtn.addEventListener('click', () => {
+    // Remove any duplicate listeners by cloning or adding directly
+    themeToggleBtn.onclick = () => {
       const current = document.documentElement.getAttribute('data-theme') || 'dark';
       const next = current === 'dark' ? 'light' : 'dark';
       setTheme(next);
-      localStorage.setItem('mahi_theme_preference', next);
-    });
+      try {
+        localStorage.setItem('mahi_theme_preference', next);
+      } catch (e) {}
+    };
   }
+
+  // Synchronize if changed in another window/tab
+  window.addEventListener('storage', (e) => {
+    if (e.key === 'mahi_theme_preference' && e.newValue) {
+      setTheme(e.newValue);
+    }
+  });
 }
 
 function setTheme(theme) {
@@ -51,7 +68,17 @@ function setTheme(theme) {
       ? '<span aria-hidden="true">☀️</span><span class="sr-only">Switch to light theme</span>' 
       : '<span aria-hidden="true">🌙</span><span class="sr-only">Switch to dark theme</span>';
     themeToggleBtn.setAttribute('title', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
+    themeToggleBtn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
   }
+
+  // Synchronize footer documentation links with current active theme
+  document.querySelectorAll('a[href*="docs/"]').forEach(a => {
+    try {
+      const href = a.getAttribute('href');
+      const base = href.split('?')[0];
+      a.setAttribute('href', `${base}?theme=${theme}`);
+    } catch (e) {}
+  });
 }
 
 /**

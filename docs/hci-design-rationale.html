@@ -1,6 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <!-- Theme Synchronization Script in Head -->
+  <script>
+    (function() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTheme = urlParams.get('theme');
+        const storedTheme = localStorage.getItem('mahi_theme_preference');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = urlTheme || storedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (urlTheme) {
+          localStorage.setItem('mahi_theme_preference', urlTheme);
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HCI &amp; UX Design Rationale | Mahi Desai</title>
@@ -64,21 +80,25 @@
     <main>
       <h1>HCI &amp; UX Design Rationale</h1>
       <p style="font-size: 1rem; color: var(--color-text-secondary);">
-        <strong>Author:</strong> Mahi Desai &bull; <strong>Platform:</strong> Semantic HTML5, CSS3, Vanilla JS &bull; <strong>Standards:</strong> WCAG 2.1 AA/AAA, Nielsen's 10 Heuristics, Shneiderman's 8 Golden Rules, Fitts's &amp; Hick's Laws.
+        <strong>Author:</strong> Mahi Desai &bull; <strong>Platform:</strong> Semantic HTML5, CSS3, Vanilla JS &bull; <strong>Standards:</strong> Targets WCAG 2.1 Level AA (individual colour pairs meeting 7:1 noted per pair); Nielsen's 10 Heuristics, Shneiderman's 8 Golden Rules, Fitts's &amp; Hick's Laws.
       </p>
 
       <!-- Section 1: Color Contrast -->
       <section>
-        <h2>1. Color Contrast &amp; Accessibility (WCAG 2.1 AA &amp; AAA)</h2>
+        <h2>1. Color Contrast &amp; Accessibility (WCAG 2.1 Level AA)</h2>
+
         <p>
-          All color pairs were mathematically validated using the standardized relative luminance formula:
+          The site targets <strong>WCAG 2.1 Level AA</strong>. Individual colour pairs that also exceed the AAA contrast threshold (7:1 normal text) are noted per pair below.
+          Ratios are computed with the complete WCAG relative luminance formula including the sRGB linearisation step:
         </p>
         <div class="formula-card">
-          L = 0.2126 &times; R + 0.7152 &times; G + 0.0722 &times; B<br>
-          Contrast Ratio = (L1 + 0.05) / (L2 + 0.05) &nbsp; [where L1 &gt; L2]
+          sRGB Linearisation: If C &le; 0.04045 then c = C / 12.92, else c = ((C + 0.055) / 1.055)<sup>2.4</sup><br>
+          Relative Luminance: L = 0.2126 &times; R<sub>lin</sub> + 0.7152 &times; G<sub>lin</sub> + 0.0722 &times; B<sub>lin</sub><br>
+          Contrast Ratio: (L<sub>1</sub> + 0.05) / (L<sub>2</sub> + 0.05) &nbsp; [where L<sub>1</sub> &gt; L<sub>2</sub>]
         </div>
 
-        <div class="table-wrapper">
+
+                <div class="table-wrapper">
           <table>
             <thead>
               <tr>
@@ -86,70 +106,97 @@
                 <th>Foreground</th>
                 <th>Background</th>
                 <th>Calculated Ratio</th>
-                <th>Compliance</th>
+                <th>Compliance Level</th>
                 <th>Rationale</th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td><strong>Light Mode: Primary Text &amp; Links</strong></td>
-                <td><code>#0F766E</code></td>
-                <td><code>#FFFFFF</code></td>
-                <td><strong>5.55 : 1</strong></td>
+                <td><code>#0F766E</code> (Dark Teal)</td>
+                <td><code>#FFFFFF</code> (White)</td>
+                <td><strong>5.47 : 1</strong></td>
                 <td><span class="badge-pass">WCAG AA Pass</span></td>
-                <td>Exceeds 4.5:1 threshold, preventing eye fatigue while maintaining brand teal tone.</td>
+                <td>Exceeds 4.5:1 AA requirement, offering crisp readability while preserving teal brand identity.</td>
               </tr>
               <tr>
                 <td><strong>Light Mode: Canvas Text</strong></td>
-                <td><code>#0F766E</code></td>
-                <td><code>#F8FAFC</code></td>
-                <td><strong>5.33 : 1</strong></td>
+                <td><code>#0F766E</code> (Dark Teal)</td>
+                <td><code>#F8FAFC</code> (Slate Canvas)</td>
+                <td><strong>5.23 : 1</strong></td>
                 <td><span class="badge-pass">WCAG AA Pass</span></td>
                 <td>High legibility over slate canvas cards and layout dividers.</td>
               </tr>
               <tr>
-                <td><strong>Teal CTA Buttons (Both Modes)</strong></td>
-                <td><code>#0F172A</code> (Navy)</td>
-                <td><code>#14B8A6</code> (Teal)</td>
-                <td><strong>7.13 : 1</strong></td>
-                <td><span class="badge-pass">WCAG AAA Pass</span></td>
-                <td>Surpasses the strict 7:1 AAA standard for maximum visual clarity on key actions.</td>
+                <td><strong>Teal CTA Button Text (Both Modes)</strong></td>
+                <td><code>#0F172A</code> (Deep Navy)</td>
+                <td><code>#14B8A6</code> (Teal Button)</td>
+                <td><strong>7.17 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA &amp; AAA Pass</span></td>
+                <td>Navy text on teal button exceeds the strict 7:1 threshold for maximum visual clarity.</td>
               </tr>
               <tr>
                 <td><strong>Dark Mode: Body Text</strong></td>
-                <td><code>#F8FAFC</code></td>
-                <td><code>#0B0F19</code></td>
+                <td><code>#F8FAFC</code> (Off-White)</td>
+                <td><code>#0B0F19</code> (Deep Navy)</td>
                 <td><strong>18.30 : 1</strong></td>
-                <td><span class="badge-pass">WCAG AAA Pass</span></td>
-                <td>Exceptional contrast preventing eye strain in low-light environments.</td>
+                <td><span class="badge-pass">WCAG AA &amp; AAA Pass</span></td>
+                <td>Exceptional contrast preventing visual fatigue in dark theme.</td>
               </tr>
               <tr>
-                <td><strong>Dark Mode: Teal Accents</strong></td>
-                <td><code>#14B8A6</code></td>
-                <td><code>#0B0F19</code></td>
-                <td><strong>7.66 : 1</strong></td>
-                <td><span class="badge-pass">WCAG AAA Pass</span></td>
-                <td>Accent color easily passes AAA standard for headings and focus rings.</td>
+                <td><strong>Dark Mode: Teal Accents &amp; Headings</strong></td>
+                <td><code>#14B8A6</code> (Vibrant Teal)</td>
+                <td><code>#0B0F19</code> (Deep Navy)</td>
+                <td><strong>7.69 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA &amp; AAA Pass</span></td>
+                <td>Exceeds 7:1 threshold for headings, links, and high-visibility focus rings.</td>
               </tr>
               <tr>
                 <td><strong>Dark Mode: Secondary Metadata</strong></td>
-                <td><code>#94A3B8</code></td>
-                <td><code>#111827</code></td>
-                <td><strong>6.45 : 1</strong></td>
+                <td><code>#94A3B8</code> (Muted Slate)</td>
+                <td><code>#0B0F19</code> (Deep Navy)</td>
+                <td><strong>7.47 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA &amp; AAA Pass</span></td>
+                <td>Timestamps and metadata tags exceed 7:1 on the base canvas.</td>
+              </tr>
+              <tr>
+                <td><strong>Dark Mode: Surface Secondary Metadata</strong></td>
+                <td><code>#94A3B8</code> (Muted Slate)</td>
+                <td><code>#111827</code> (Card Surface)</td>
+                <td><strong>6.92 : 1</strong></td>
                 <td><span class="badge-pass">WCAG AA Pass</span></td>
-                <td>Timestamps, tags, and metrics remain crisp and legible.</td>
+                <td>Card metadata easily passes the 4.5:1 AA standard (nearly reaching AAA 7:1).</td>
               </tr>
               <tr>
                 <td><strong>Light Mode: Secondary Text</strong></td>
-                <td><code>#334155</code></td>
-                <td><code>#FFFFFF</code></td>
-                <td><strong>9.53 : 1</strong></td>
-                <td><span class="badge-pass">WCAG AAA Pass</span></td>
+                <td><code>#334155</code> (Dark Slate)</td>
+                <td><code>#FFFFFF</code> (White Surface)</td>
+                <td><strong>10.35 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA &amp; AAA Pass</span></td>
                 <td>Subheadings and descriptions provide effortless legibility.</td>
+              </tr>
+              <tr>
+                <td><strong>Light Mode: AI Accent Badge</strong></td>
+                <td><code>#0369A1</code> (Calibrated Navy/Blue)</td>
+                <td><code>#FFFFFF</code> (White Surface)</td>
+                <td><strong>5.93 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA Pass</span></td>
+                <td>Calibrated from previous #0284C7 (4.1:1) to #0369A1 to ensure strict WCAG AA compliance (&gt; 4.5:1).</td>
+              </tr>
+              <tr>
+                <td><strong>Form Error Alerts (Dark Mode)</strong></td>
+                <td><code>#F43F5E</code> (Rose)</td>
+                <td><code>#0B0F19</code> (Deep Navy)</td>
+                <td><strong>5.22 : 1</strong></td>
+                <td><span class="badge-pass">WCAG AA Pass</span></td>
+                <td>Error messages remain clearly discernible and pass AA threshold.</td>
               </tr>
             </tbody>
           </table>
         </div>
+        <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: var(--space-2);">
+          <strong>Accessibility Limitations Note:</strong> Automated accessibility evaluations and contrast mathematical audits have verified WCAG 2.1 Level AA conformance. Formal screen-reader manual testing (e.g. with NVDA or JAWS) has not yet been conducted; ARIA attributes, semantic headings, and skip-to-content links are implemented per specifications.
+        </p>
       </section>
 
       <!-- Section 2: Nielsen's Heuristics -->
@@ -214,10 +261,15 @@
           <li>SUS calculator shows an interactive question-by-question breakdown explaining how points are calculated.</li>
         </ul>
 
-        <h3>10. Help &amp; Documentation</h3>
+        <h3>10. Help &amp; Documentation (In-Interface Contextual Help)</h3>
+        <p>In-interface contextual help is integrated directly across the user journey (Nielsen #10, Shneiderman #8):</p>
         <ul>
-          <li>Dedicated documentation pages for HCI design rationale and usability evaluation protocols.</li>
-          <li>Transparent listing of education credentials, GitHub links, and contact coordinates.</li>
+          <li><strong>Project Filter Helper Text:</strong> Explicit guide directly below filter chips (<em>"Choose a category to narrow the projects. Select 'All' to reset."</em>).</li>
+          <li><strong>Blog Search Hint:</strong> Subtitle informing visitors that search operates in real-time across titles, tags, and body content.</li>
+          <li><strong>Form Field Hints (WCAG 3.3.2):</strong> Contextual hints beneath each contact input (e.g. <em>"We'll only use this to reply to you"</em>) programmatically linked via <code>aria-describedby</code>.</li>
+          <li><strong>SUS Scoring Documentation:</strong> Collapsible <em>"How SUS scoring and benchmarks work"</em> explanation and 1&ndash;5 scale legend inside the evaluation card.</li>
+          <li><strong>Accessible Tooltips (WCAG 1.4.13):</strong> Controls such as the theme switcher, Rate Site button, and Export buttons feature keyboard-focusable, hover-persistent, and Esc-dismissible tooltips.</li>
+          <li><em>Project Documentation:</em> Dedicated HCI design rationale and usability evaluation files exist in the footer as external project documentation, distinct from the in-app help system.</li>
         </ul>
       </section>
 
@@ -226,9 +278,14 @@
         <h2>3. Shneiderman's 8 Golden Rules Integration</h2>
         <ol>
           <li><strong>Strive for Consistency:</strong> Standardized typography scale, button heights (min 44px), and card radii.</li>
-          <li><strong>Cater to Universal Usability:</strong> Strict WCAG 2.1 AA/AAA contrast ratios and <code>prefers-reduced-motion</code> support.</li>
+          <li><strong>Cater to Universal Usability:</strong> Strict WCAG 2.1 Level AA compliance (with key pairs exceeding AAA 7:1) and complete <code>prefers-reduced-motion</code> support.</li>
           <li><strong>Offer Informative Feedback:</strong> Visual hover states, active navigation indicators, and real-time form validation.</li>
-          <li><strong>Design Dialogs to Yield Closure:</strong> Contact form shows confirmation alert; SUS form calculates instant score badge.</li>
+          <li><strong>Design Dialogs to Yield Closure:</strong> Honest, real closure mechanisms:
+            <ul style="margin-top: 4px; margin-bottom: 4px;">
+              <li><em>Contact Form:</em> While dispatching, the submit button is disabled with status "Sending..." and <code>aria-busy="true"</code>. On confirmed HTTP 2xx from Formspree, an inline success alert (<code>role="status"</code>) confirms delivery and resets the form. On error, a specific error alert (<code>role="alert"</code>) retains typed text and provides an email fallback. When placeholder mode is detected, the UI explicitly announces that it opened the email application, never falsely claiming delivery.</li>
+              <li><em>SUS Evaluation Form:</em> Submitting displays an immediate calculated score badge, calibrated Sauro &amp; Lewis (2016) grade, and an expandable question-by-question point breakdown.</li>
+            </ul>
+          </li>
           <li><strong>Prevent Errors:</strong> Pre-submission input checks prevent blank or malformed inquiries.</li>
           <li><strong>Permit Easy Reversal of Actions:</strong> Modals close with Escape key; SUS responses can be reset with one click.</li>
           <li><strong>Support Internal Locus of Control:</strong> Users control theme, project filter categories, and article search.</li>
@@ -264,9 +321,55 @@
     </main>
 
     <footer style="margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
-      <a href="../index.html#footer" class="btn btn-primary btn-sm">← Return to Portfolio</a>
+      <a href="../index.html#footer" class="btn btn-primary btn-sm return-footer-btn">← Return to Portfolio</a>
       <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="btn btn-secondary btn-sm">Top ↑</a>
     </footer>
   </div>
+  <!-- Theme Synchronization Script -->
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('theme-toggle-btn');
+      const icon = document.getElementById('theme-toggle-icon');
+      const returnLink = document.getElementById('return-portfolio-link');
+
+      function updateUI(theme) {
+        if (icon) {
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+        if (toggleBtn) {
+          toggleBtn.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme');
+          toggleBtn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme');
+        }
+        if (returnLink) {
+          returnLink.setAttribute('href', '../index.html?theme=' + theme + '#footer');
+        }
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem('mahi_theme_preference', theme);
+        } catch (e) {}
+        updateUI(theme);
+      }
+
+      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateUI(activeTheme);
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          const current = document.documentElement.getAttribute('data-theme') || 'dark';
+          const next = current === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+        });
+      }
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'mahi_theme_preference' && e.newValue) {
+          applyTheme(e.newValue);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>

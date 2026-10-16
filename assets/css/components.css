@@ -6,7 +6,7 @@
  */
 
 /* ==========================================================================
-   BUTTONS (Fitts's Law >= 44px min touch target, WCAG AAA Contrast 7.13:1)
+   BUTTONS (Fitts's Law >= 44px min touch target, Exceeds 7:1 AAA contrast threshold (7.17:1))
    ========================================================================== */
 .btn {
   display: inline-flex;
@@ -28,7 +28,7 @@
   text-decoration: none;
 }
 
-/* Primary Button: Teal background with dark navy text (7.13:1 contrast ratio) */
+/* Primary Button: Teal background with dark navy text (7.17:1 contrast ratio) */
 .btn-primary {
   background-color: var(--btn-teal-bg);
   color: var(--btn-teal-text) !important;
@@ -414,9 +414,13 @@
 
 .cert-date {
   font-family: var(--font-family-mono);
-  font-size: var(--font-size-xs);
-  color: var(--color-text-muted);
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-teal);
   margin-bottom: var(--space-2);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
 }
 
 .cert-topics {
@@ -1019,4 +1023,54 @@
   flex-wrap: wrap;
   gap: var(--space-3);
   margin-top: var(--space-4);
+}
+
+/* ==========================================================================
+   ACCESSIBLE TOOLTIPS (WCAG 1.4.13: Hoverable, Focusable, Dismissible via Esc)
+   ========================================================================== */
+.has-tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip-content {
+  position: absolute;
+  bottom: calc(100% + 8px);
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-primary);
+  border: 1px solid var(--color-border);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-snug);
+  white-space: normal;
+  max-width: 260px;
+  width: max-content;
+  box-shadow: var(--shadow-md);
+  z-index: 1200;
+  pointer-events: auto; /* WCAG 1.4.13 Hoverable */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity var(--transition-fast), visibility var(--transition-fast);
+}
+
+.has-tooltip:hover .tooltip-content,
+.has-tooltip:focus-within .tooltip-content {
+  opacity: 1;
+  visibility: visible;
+}
+
+.tooltip-content.dismissed {
+  opacity: 0 !important;
+  visibility: hidden !important;
+}
+
+/* Form Helper & Hint Text (Nielsen #10) */
+.form-hint-text {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  margin-top: 2px;
 }

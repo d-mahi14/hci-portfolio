@@ -12,9 +12,9 @@ Built with plain semantic **HTML5**, **CSS3**, and **Vanilla JavaScript** (zero 
    - Sticky header consolidated into **strictly 6 primary navigation destinations**: About, Academic, Experience & Activities, Projects, Blog, and Contact.
    - Separate direct links to the **SUS Usability Evaluator** embedded in both the hero section and footer.
 
-2. **Contrast & Visual Accessibility (WCAG 2.1 AA & AAA)**:
+2. **Contrast & Visual Accessibility (WCAG 2.1 Level AA)**:
    - Light mode primary text & links calibrated to `#0F766E` (contrast ratio **5.55:1** on white, **5.33:1** on slate canvas).
-   - High-contrast primary call-to-action buttons: Deep Navy text (`#0F172A`) on vibrant Teal background (`#14B8A6`) achieving an exceptional **7.13:1** contrast ratio (WCAG AAA compliant).
+   - High-contrast primary call-to-action buttons: Deep Navy text (`#0F172A`) on vibrant Teal background (`#14B8A6`) achieving a **7.17:1** contrast ratio (exceeding the 7:1 AAA threshold).
    - Seamless dark/light theme switcher with `localStorage` persistence and system preference (`prefers-color-scheme`) synchronization.
    - Comprehensive skip-to-content keyboard link, visible `:focus-visible` indicators, and full `prefers-reduced-motion` accommodation.
 

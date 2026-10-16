@@ -1,6 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
+  <!-- Theme Synchronization Script in Head -->
+  <script>
+    (function() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTheme = urlParams.get('theme');
+        const storedTheme = localStorage.getItem('mahi_theme_preference');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = urlTheme || storedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (urlTheme) {
+          localStorage.setItem('mahi_theme_preference', urlTheme);
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Mahi Desai | AI/ML & Full-Stack Engineer | Portfolio</title>
@@ -43,15 +59,23 @@
           <li><a href="#projects" class="nav-link">Projects</a></li>
           <li><a href="#blog" class="nav-link">Blog</a></li>
           <li><a href="#contact" class="nav-link">Contact</a></li>
-          <li><a href="#sus" class="nav-link" style="color: var(--color-teal); font-weight: 700;">Rate Site ★</a></li>
+          <li>
+            <div class="has-tooltip">
+              <a href="#sus" class="nav-link" style="color: var(--color-teal); font-weight: 700;" aria-describedby="nav-rate-tooltip">Rate Site ★</a>
+              <div id="nav-rate-tooltip" class="tooltip-content" role="tooltip">Take the 10-question standardized SUS usability evaluation.</div>
+            </div>
+          </li>
         </ul>
       </nav>
 
       <div class="nav-actions">
         <!-- Theme Toggle (Fitts's Law min 44x44px target) -->
-        <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle dark and light theme" title="Toggle theme">
-          <span aria-hidden="true">☀️</span>
-        </button>
+        <div class="has-tooltip">
+          <button type="button" class="theme-toggle-btn" id="theme-toggle-btn" aria-label="Toggle dark and light theme" aria-describedby="theme-toggle-tooltip">
+            <span aria-hidden="true">☀️</span>
+          </button>
+          <div id="theme-toggle-tooltip" class="tooltip-content" role="tooltip">Switch between dark navy and light slate theme. Press Esc to dismiss.</div>
+        </div>
 
         <!-- Mobile Navigation Toggle -->
         <button type="button" class="mobile-nav-toggle" id="mobile-nav-toggle" aria-expanded="false" aria-controls="nav-menu" aria-label="Open main navigation menu">
@@ -309,19 +333,10 @@
         <div style="margin-top: var(--space-12);">
           <h3 style="font-size: var(--font-size-lg); margin-bottom: var(--space-3);">Certifications &amp; Deep Learning Credentials</h3>
           <div class="cert-grid">
-            <div class="cert-card">
-              <h4 class="cert-title">Generative and Agentic AI</h4>
-              <div class="cert-date">Apr. 2026</div>
-              <p class="cert-topics">LLMs, RAG, AI agents, multimodal AI, and responsible AI architectures.</p>
-              <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
-                <a href="https://www.coursera.org/account/accomplishments/verify/87BG52WF37FA" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
-                  View Certificate ↗
-                </a>
-              </div>
-            </div>
+            <!-- P4 Remediation: Sorted newest first (Sep. 2026 -> Apr. 2026 -> Nov. 2025) -->
             <div class="cert-card">
               <h4 class="cert-title">AWS Cloud Practitioner Essentials</h4>
-              <div class="cert-date">Sep. 2026</div>
+              <div class="cert-date">📅 Sep. 2026 </div>
               <p class="cert-topics">AWS Training &amp; Certification covering core AWS services, cloud security, architecture, and pricing.</p>
               <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
                 <a href="https://drive.google.com/file/d/1q45Fu52F-SsG8PN8n-scOBRR_DdpBPPi/view" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
@@ -330,8 +345,18 @@
               </div>
             </div>
             <div class="cert-card">
+              <h4 class="cert-title">Generative and Agentic AI</h4>
+              <div class="cert-date">📅 Apr. 2026</div>
+              <p class="cert-topics">LLMs, RAG, AI agents, multimodal AI, and responsible AI architectures.</p>
+              <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
+                <a href="https://www.coursera.org/account/accomplishments/verify/87BG52WF37FA" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
+                  View Certificate ↗
+                </a>
+              </div>
+            </div>
+            <div class="cert-card">
               <h4 class="cert-title">Neural Networks and Deep Learning</h4>
-              <div class="cert-date">Nov. 2025</div>
+              <div class="cert-date">📅 Nov. 2025</div>
               <p class="cert-topics">Deep learning architectures, vectorized forward/backward propagation, and gradient optimization algorithms.</p>
               <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
                 <a href="https://www.coursera.org/account/accomplishments/verify/TMGWV8XV2G40" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
@@ -341,7 +366,7 @@
             </div>
             <div class="cert-card">
               <h4 class="cert-title">Improving Deep Neural Networks</h4>
-              <div class="cert-date">Nov. 2025</div>
+              <div class="cert-date">📅 Nov. 2025</div>
               <p class="cert-topics">Hyperparameter tuning, L2 regularization, dropout, batch normalization, and Adam optimization.</p>
               <div style="margin-top: var(--space-3); padding-top: var(--space-2); border-top: 1px dashed var(--color-border);">
                 <a href="https://www.coursera.org/account/accomplishments/verify/3ZC5KN01B2ND" target="_blank" rel="noopener noreferrer" class="cert-link" style="font-size: 0.8rem; font-weight: 600; color: var(--color-teal); display: inline-flex; align-items: center; gap: 4px;">
@@ -428,9 +453,12 @@
         </div>
 
         <!-- Filter Chips (Hick's Law: Reduced cognitive choice) -->
-        <div class="project-filters" id="project-filters" role="group" aria-label="Filter projects by technical category">
+        <div class="project-filters" id="project-filters" role="group" aria-label="Filter projects by technical category" aria-describedby="project-filters-help">
           <!-- Rendered dynamically by projects.js -->
         </div>
+        <p id="project-filters-help" style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: -1rem; margin-bottom: var(--space-6);">
+          Choose a category to narrow the projects. Select 'All' to reset.
+        </p>
 
         <!-- Dynamic Grid -->
         <div class="projects-grid" id="projects-grid" aria-live="polite">
@@ -465,7 +493,11 @@
               class="blog-search-input" 
               placeholder="Search articles by title, tag, or topic..." 
               aria-label="Search articles"
+              aria-describedby="blog-search-hint"
             >
+            <span id="blog-search-hint" style="font-size: 0.75rem; color: var(--color-text-muted); display: block; margin-top: 4px;">
+              Searches in real-time across article titles, tags, and content bodies.
+            </span>
           </div>
 
           <div id="blog-tags" class="skill-chips" role="group" aria-label="Filter articles by tag">
@@ -502,30 +534,7 @@
             </p>
 
             <div style="display: flex; flex-direction: column; gap: var(--space-4); margin-top: var(--space-6);">
-              <div style="display: flex; align-items: center; gap: var(--space-3);">
-                <div class="social-icon-btn" style="background: var(--color-teal-glow); color: var(--color-teal);">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
-                    <polyline points="22,6 12,13 2,6"></polyline>
-                  </svg>
-                </div>
-                <div>
-                  <div style="font-size: 0.75rem; color: var(--color-text-muted);">Email</div>
-                  <a href="mailto:desaihmahi@gmail.com" style="font-weight: 600;">desaihmahi@gmail.com</a>
-                </div>
-              </div>
-
-              <div style="display: flex; align-items: center; gap: var(--space-3);">
-                <div class="social-icon-btn" style="background: var(--color-teal-glow); color: var(--color-teal);">
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <div style="font-size: 0.75rem; color: var(--color-text-muted);">Phone</div>
-                  <a href="tel:+918779316909" style="font-weight: 600;">+91 8779316909</a>
-                </div>
-              </div>
+              
 
               <div style="display: flex; align-items: center; gap: var(--space-3);">
                 <div class="social-icon-btn" style="background: var(--color-teal-glow); color: var(--color-teal);">
@@ -558,8 +567,9 @@
                   class="form-input" 
                   placeholder="e.g., Alex Smith" 
                   required 
-                  aria-describedby="contact-name-error"
+                  aria-describedby="contact-name-hint contact-name-error"
                 >
+                <span id="contact-name-hint" class="form-hint-text">Enter your full or preferred name.</span>
                 <span class="form-error-msg" id="contact-name-error" role="alert"></span>
               </div>
 
@@ -574,8 +584,9 @@
                   class="form-input" 
                   placeholder="e.g., alex@company.com" 
                   required 
-                  aria-describedby="contact-email-error"
+                  aria-describedby="contact-email-hint contact-email-error"
                 >
+                <span id="contact-email-hint" class="form-hint-text">We'll only use this to reply to you.</span>
                 <span class="form-error-msg" id="contact-email-error" role="alert"></span>
               </div>
 
@@ -589,8 +600,9 @@
                   class="form-textarea" 
                   placeholder="Describe your inquiry, role requirements, or project details..." 
                   required 
-                  aria-describedby="contact-message-error"
+                  aria-describedby="contact-message-hint contact-message-error"
                 ></textarea>
+                <span id="contact-message-hint" class="form-hint-text">Describe your inquiry, role requirements, or project details.</span>
                 <span class="form-error-msg" id="contact-message-error" role="alert"></span>
               </div>
 
@@ -623,21 +635,72 @@
         <div class="sus-card">
           <form id="sus-form">
 
-            <!-- SUS Scoring Mode Selector -->
+            <!-- SUS Scoring Mode Selector (Standard Brooke is Recommended Default) -->
             <div style="background: var(--color-bg-elevated); border: 1px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-4); margin-bottom: var(--space-6);">
-              <label style="font-weight: 600; font-size: 0.9rem; color: var(--color-text-primary); display: block; margin-bottom: var(--space-2);">
-                Select Scoring Mode:
-              </label>
-              <div style="display: flex; flex-wrap: wrap; gap: var(--space-6);">
-                <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem;">
-                  <input type="radio" name="sus-scoring-mode" id="sus-mode-positive" value="positive" checked style="accent-color: var(--color-teal); width: 18px; height: 18px;">
-                  <span><strong>All-Positive Mode (Recommended):</strong> 5 is ALWAYS best across all questions.</span>
+              <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-3); flex-wrap: wrap; gap: var(--space-2);">
+                <label style="font-weight: 700; font-size: 0.9rem; color: var(--color-text-primary);">
+                  Select Evaluation Instrument:
                 </label>
-                <label style="display: inline-flex; align-items: center; gap: 8px; cursor: pointer; font-size: 0.85rem;">
-                  <input type="radio" name="sus-scoring-mode" id="sus-mode-standard" value="standard" style="accent-color: var(--color-teal); width: 18px; height: 18px;">
-                  <span><strong>Standard Brooke SUS (1996):</strong> Alternating negative questions (Q2, 4, 6, 8, 10 are inverted).</span>
+                <span style="font-size: 0.75rem; color: var(--color-teal); font-weight: 600;">Standard Brooke SUS is the validated benchmark</span>
+              </div>
+
+              <div style="display: flex; flex-direction: column; gap: var(--space-3);">
+                <label style="display: inline-flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.85rem;">
+                  <input type="radio" name="sus-scoring-mode" id="sus-mode-standard" value="standard" checked style="accent-color: var(--color-teal); width: 18px; height: 18px; margin-top: 2px;">
+                  <span>
+                    <strong>Standard Brooke SUS (1996) — (Recommended):</strong> Official 10-item instrument. 
+                    <span style="display: block; font-size: 0.75rem; color: var(--color-text-muted);">
+                      Odd questions are positive; even questions are negative. Directly comparable to published industry benchmarks (Sauro &amp; Lewis, 2016).
+                    </span>
+                  </span>
+                </label>
+
+                <label style="display: inline-flex; align-items: flex-start; gap: 8px; cursor: pointer; font-size: 0.85rem;">
+                  <input type="radio" name="sus-scoring-mode" id="sus-mode-positive" value="all-positive" style="accent-color: var(--color-teal); width: 18px; height: 18px; margin-top: 2px;">
+                  <span>
+                    <strong>Non-standard: all-positive wording</strong> (for clarity practice only; not comparable to SUS benchmarks).
+                    <span style="display: block; font-size: 0.75rem; color: var(--color-text-muted);">
+                      Note: Changing negative items to positive statements alters Brooke's validated scale; results are stored separately and excluded from official aggregates.
+                    </span>
+                  </span>
                 </label>
               </div>
+
+              <!-- Nielsen #5: Error prevention note -->
+              <div style="margin-top: var(--space-3); padding: var(--space-2) var(--space-3); background: rgba(20, 184, 166, 0.1); border-left: 3px solid var(--color-teal); border-radius: var(--radius-sm); font-size: 0.8rem; color: var(--color-text-primary);">
+                <strong>Important note:</strong> Questions alternate between positive and negative wording. Read each carefully before answering.
+              </div>
+            </div>
+
+            <!-- Change 3d: Collapsible 'How Scoring Works' explanation and Scale Legend -->
+            <details style="background: var(--color-bg-surface); border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-3) var(--space-4); margin-bottom: var(--space-6);">
+              <summary style="cursor: pointer; font-weight: 600; color: var(--color-teal); font-size: 0.85rem;">
+                ℹ️ How SUS scoring and benchmarks work (Click to expand)
+              </summary>
+              <div style="font-size: 0.82rem; color: var(--color-text-secondary); line-height: 1.6; margin-top: var(--space-3);">
+                <p>The System Usability Scale (Brooke, 1996) calculates scores ranging from 0 to 100:</p>
+                <ul style="padding-left: var(--space-4); margin-bottom: var(--space-3);">
+                  <li>Odd questions (1, 3, 5, 7, 9) contribute: <code>(Selected Score &minus; 1)</code></li>
+                  <li>Even questions (2, 4, 6, 8, 10) contribute: <code>(5 &minus; Selected Score)</code></li>
+                  <li>Total score = <code>(Sum of Contributions) &times; 2.5</code></li>
+                </ul>
+                <p style="margin-bottom: var(--space-2);">
+                  <strong>Curved Grading Scale (Sauro &amp; Lewis, 2016):</strong><br>
+                  A+ (84.1–100) &bull; A (80.8–84.0) &bull; A- (78.9–80.7) &bull; B+ (77.2–78.8) &bull; B (74.1–77.1) &bull; B- (72.6–74.0) &bull; C+ (71.1–72.5) &bull; C (65.0–71.0) &bull; C- (62.7–64.9) &bull; D (51.7–62.6) &bull; F (0–51.6).
+                </p>
+                <p style="margin-bottom: 0; color: var(--color-teal); font-weight: 600;">
+                  A score of 68 is the industry average (grade C), not 'above average'. Scores above 71 represent above-average usability.
+                </p>
+              </div>
+            </details>
+
+            <!-- 1-5 Scale Legend -->
+            <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: var(--space-2); padding-inline: var(--space-2); border-bottom: 1px solid var(--color-border); padding-bottom: var(--space-2);">
+              <span><strong>Scale Legend:</strong> 1 = Strongly Disagree</span>
+              <span>2 = Disagree</span>
+              <span>3 = Neutral</span>
+              <span>4 = Agree</span>
+              <span>5 = Strongly Agree</span>
             </div>
 
             <div style="display: flex; flex-wrap: wrap; gap: var(--space-4); margin-bottom: var(--space-6);">

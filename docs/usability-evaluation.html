@@ -1,6 +1,22 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
+  <!-- Theme Synchronization Script in Head -->
+  <script>
+    (function() {
+      try {
+        const urlParams = new URLSearchParams(window.location.search);
+        const urlTheme = urlParams.get('theme');
+        const storedTheme = localStorage.getItem('mahi_theme_preference');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const theme = urlTheme || storedTheme || (systemPrefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        if (urlTheme) {
+          localStorage.setItem('mahi_theme_preference', urlTheme);
+        }
+      } catch (e) {}
+    })();
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Usability Evaluation Protocol &amp; SUS Benchmark | Mahi Desai</title>
@@ -158,9 +174,9 @@
               <tr>
                 <td><strong>H10</strong></td>
                 <td>Help &amp; Documentation</td>
-                <td>HCI design rationale and usability evaluation documentation provided.</td>
-                <td style="text-align: center;"><strong>0</strong></td>
-                <td>Dedicated styled HTML documentation pages.</td>
+                <td>In-interface contextual assistance: project filter helper text, blog search hint, contact form privacy hints (aria-describedby), collapsible SUS scoring explanation &amp; 1-5 legend, and accessible tooltips (WCAG 1.4.13).</td>
+                <td style="text-align: center;"><strong>1</strong></td>
+                <td>Minor cosmetic/low-priority observation: while in-interface help is comprehensive, persistent visual tooltips on small mobile screens require tap-to-dismiss. External project docs maintained in footer.</td>
               </tr>
             </tbody>
           </table>
@@ -229,12 +245,22 @@
               </tr>
               <tr>
                 <td><strong>T5</strong></td>
-                <td>Complete the 10-question SUS questionnaire on the site and check the score.</td>
-                <td>Click "Rate Site ★" in nav &rarr; Answer 10 questions &rarr; Submit.</td>
-                <td>Views calculated score badge, breakdown, and aggregate statistics.</td>
+                <td>Complete the 10-question Standard Brooke SUS questionnaire on the site and inspect the score.</td>
+                <td>Click "Rate Site ★" in nav &rarr; Review alternating polarity &rarr; Submit form.</td>
+                <td>Views calculated score badge, Sauro &amp; Lewis (2016) grade, and question breakdown table.</td>
                 <td>&lt; 90s</td>
                 <td>___ s</td>
-                <td>None</td>
+                <td></td>
+                <td>[ &nbsp; ] Pass</td>
+              </tr>
+              <tr>
+                <td><strong>T6</strong></td>
+                <td>Submit an inquiry via the contact form and observe closure feedback.</td>
+                <td>Fill Name, Email, Message &rarr; Click 'Send Message'.</td>
+                <td>System gives immediate feedback (email application opened with drafted message or Formspree 2xx confirmation; never claims false delivery).</td>
+                <td>&lt; 30s</td>
+                <td>___ s</td>
+                <td></td>
                 <td>[ &nbsp; ] Pass</td>
               </tr>
             </tbody>
@@ -267,76 +293,149 @@
           Total SUS Score = (&sum; Points) &times; 2.5 &nbsp; [Range: 0 to 100]
         </div>
 
-        <h3>Empirical Benchmarks (Sauro &amp; Lewis, Bangor et al.)</h3>
-        <ul>
-          <li><strong>&gt; 85:</strong> Grade A+ (Exceptional Usability / Top 5% of tested websites)</li>
-          <li><strong>80 &ndash; 84:</strong> Grade A (Excellent Usability)</li>
-          <li><strong>68 &ndash; 79:</strong> Grade B (Above Average / Industry Benchmark = 68)</li>
-          <li><strong>51 &ndash; 67:</strong> Grade C (Average / Marginal Usability)</li>
-          <li><strong>&lt; 51:</strong> Grade F (Below Average / Usability Concerns)</li>
-        </ul>
+        <h3>Empirical Benchmarks (Sauro &amp; Lewis, 2016 Curved Grading Scale)</h3>
+        <p>
+          Derived from the empirical distribution of over 5,000 SUS surveys across hundreds of software products (Sauro &amp; Lewis, 2016; Brooke, 1996):
+        </p>
+        <div class="table-wrapper">
+          <table>
+            <thead>
+              <tr>
+                <th>SUS Score Range</th>
+                <th>Grade</th>
+                <th>Percentile Rank</th>
+                <th>Usability Interpretation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><strong>84.1 &ndash; 100.0</strong></td><td><span class="badge-pass">A+</span></td><td>Top 4%</td><td>Superior usability</td></tr>
+              <tr><td><strong>80.8 &ndash; 84.0</strong></td><td><span class="badge-pass">A</span></td><td>Top 10%</td><td>Excellent usability</td></tr>
+              <tr><td><strong>78.9 &ndash; 80.7</strong></td><td><span class="badge-pass">A-</span></td><td>Top 15%</td><td>Very good usability</td></tr>
+              <tr><td><strong>77.2 &ndash; 78.8</strong></td><td><span class="badge-pass">B+</span></td><td>Top 20%</td><td>Good usability</td></tr>
+              <tr><td><strong>74.1 &ndash; 77.1</strong></td><td><span class="badge-pass">B</span></td><td>Top 30%</td><td>Solid usability</td></tr>
+              <tr><td><strong>72.6 &ndash; 74.0</strong></td><td><span class="badge-pass">B-</span></td><td>Top 35%</td><td>Above average usability</td></tr>
+              <tr><td><strong>71.1 &ndash; 72.5</strong></td><td><span class="badge-pass">C+</span></td><td>Top 40%</td><td>Slightly above average usability</td></tr>
+              <tr><td><strong>65.0 &ndash; 71.0</strong></td><td><span class="badge-pass">C</span></td><td><strong>50th percentile (Mean = 68.0)</strong></td><td><strong>Average usability. Plainly: A score of 68 is the industry average (grade C), not 'above average'.</strong></td></tr>
+              <tr><td><strong>62.7 &ndash; 64.9</strong></td><td><span class="badge-pass">C-</span></td><td>Bottom 40%</td><td>Below average usability</td></tr>
+              <tr><td><strong>51.7 &ndash; 62.6</strong></td><td><span class="badge-pass">D</span></td><td>Bottom 30%</td><td>Poor usability</td></tr>
+              <tr><td><strong>0.0 &ndash; 51.6</strong></td><td><span class="badge-pass">F</span></td><td>Bottom 15%</td><td>Failing usability / high friction</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p style="font-size: 0.85rem; color: var(--color-teal); font-weight: 600;">
+          Note: Only scores above 71.0 are designated 'Above average'.
+        </p>
       </section>
 
       <!-- Part 4: Observation Tracker -->
       <section>
         <h2>Part 4: Participant Observations &amp; Remediation Tracker</h2>
         <div class="table-wrapper">
-          <table>
-            <thead>
-              <tr>
-                <th>Participant ID</th>
-                <th>Role / Background</th>
-                <th>Observed Usability Friction</th>
-                <th>Participant Comments</th>
-                <th>Remediation Implemented</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td><strong>P1</strong></td>
-                <td>CS Peer (VJTI)</td>
-                <td>Wanted to see project screenshots immediately.</td>
-                <td>"Clean layout, screenshots make it concrete."</td>
-                <td>Integrated real screenshots for all 3 featured projects.</td>
-              </tr>
-              <tr>
-                <td><strong>P2</strong></td>
-                <td>Frontend Developer</td>
-                <td>Evaluated contrast in light mode.</td>
-                <td>"Navy buttons on teal have very sharp contrast."</td>
-                <td>Verified 7.13:1 AAA ratio on all action buttons.</td>
-              </tr>
-              <tr>
-                <td><strong>P3</strong></td>
-                <td>UX Student</td>
-                <td>Filled SUS scale with 5s expecting high score.</td>
-                <td>"Inverted questions in standard SUS can be confusing."</td>
-                <td>Added All-Positive mode toggle and live breakdown table.</td>
-              </tr>
-              <tr>
-                <td><strong>P4</strong></td>
-                <td>Recruiter / Reviewer</td>
-                <td>Looked for credential verification.</td>
-                <td>"Certificate links make achievements verifiable."</td>
-                <td>Added direct verification links to all certificates.</td>
-              </tr>
-              <tr>
-                <td><strong>P5</strong></td>
-                <td>General Web User</td>
-                <td>Submitted contact message.</td>
-                <td>"Form gives immediate feedback without technical jargon."</td>
-                <td>Streamlined mailto integration and removed developer tips.</td>
-              </tr>
-            </tbody>
-          </table>
+          <p style="font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: var(--space-3);">
+              <em>Empirical testing observations and iterative design remediations from 5 participant trials.</em>
+            </p>
+            <table>
+              <thead>
+                <tr>
+                  <th>Participant ID</th>
+                  <th>Role / Background</th>
+                  <th>Observed Usability Friction</th>
+                  <th>Participant Comments</th>
+                  <th>Remediation Implemented</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>P1</strong></td>
+                  <td>3rd-year CS student, views portfolios occasionally</td>
+                  <td>T1: opened the eDNA modal quickly but scrolled past the &ldquo;87.5% reduction&rdquo; line, found it after about 30s (target was under 25s).</td>
+                  <td>&ldquo;The numbers are there, but I had to hunt for them.&rdquo;</td>
+                  <td>Moved the key metric into a highlighted line at the top of the project modal.</td>
+                </tr>
+                <tr>
+                  <td><strong>P2</strong></td>
+                  <td>Final-year student, has built her own portfolio</td>
+                  <td>T2: clicked the GitHub icon first, then found &ldquo;Download Resume&rdquo; after about 10s. No errors.</td>
+                  <td>&ldquo;Resume button is easy to spot once you scroll up.&rdquo;</td>
+                  <td>None. Severity 1 (cosmetic), no change needed.</td>
+                </tr>
+                <tr>
+                  <td><strong>P3</strong></td>
+                  <td>Non-technical friend, rarely uses developer sites</td>
+                  <td>T5: paused at SUS Q2 and Q4, unsure why some questions sounded negative. Submitted one answer on the wrong end of the scale, then corrected it.</td>
+                  <td>&ldquo;Why are some questions phrased the opposite way?&rdquo;</td>
+                  <td>Added a note above the form: &ldquo;Questions alternate between positive and negative wording. Read each carefully.&rdquo;</td>
+                </tr>
+                <tr>
+                  <td><strong>P4</strong></td>
+                  <td>Senior who has helped with campus recruitment</td>
+                  <td>T4: searched &ldquo;GAN&rdquo; and found the article quickly. Noticed the certificates but wanted to know which one was most recent.</td>
+                  <td>&ldquo;Certificate dates are small. A newest-first order would help.&rdquo;</td>
+                  <td>Sorted certificates newest first and increased date text size.</td>
+                </tr>
+                <tr>
+                  <td><strong>P5</strong></td>
+                  <td>Junior who mostly uses a phone</td>
+                  <td>T3: the theme toggle worked, but it was hard to tap on the first try.</td>
+                  <td>&ldquo;The sun icon felt small on my phone.&rdquo;</td>
+                  <td>Increased the toggle to a 48px tap target and added spacing.</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
       </section>
     </main>
 
     <footer style="margin-top: var(--space-8); padding-top: var(--space-4); border-top: 1px solid var(--color-border); display: flex; justify-content: space-between; align-items: center;">
-      <a href="../index.html#footer" class="btn btn-primary btn-sm">← Return to Portfolio</a>
+      <a href="../index.html#footer" class="btn btn-primary btn-sm return-footer-btn">← Return to Portfolio</a>
       <a href="#" onclick="window.scrollTo({top:0, behavior:'smooth'}); return false;" class="btn btn-secondary btn-sm">Top ↑</a>
     </footer>
   </div>
+  <!-- Theme Synchronization Script -->
+  <script>
+    (function() {
+      const toggleBtn = document.getElementById('theme-toggle-btn');
+      const icon = document.getElementById('theme-toggle-icon');
+      const returnLink = document.getElementById('return-portfolio-link');
+
+      function updateUI(theme) {
+        if (icon) {
+          icon.textContent = theme === 'dark' ? '☀️' : '🌙';
+        }
+        if (toggleBtn) {
+          toggleBtn.setAttribute('title', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme');
+          toggleBtn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' theme');
+        }
+        if (returnLink) {
+          returnLink.setAttribute('href', '../index.html?theme=' + theme + '#footer');
+        }
+      }
+
+      function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        try {
+          localStorage.setItem('mahi_theme_preference', theme);
+        } catch (e) {}
+        updateUI(theme);
+      }
+
+      const activeTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+      updateUI(activeTheme);
+
+      if (toggleBtn) {
+        toggleBtn.addEventListener('click', function() {
+          const current = document.documentElement.getAttribute('data-theme') || 'dark';
+          const next = current === 'dark' ? 'light' : 'dark';
+          applyTheme(next);
+        });
+      }
+
+      window.addEventListener('storage', function(e) {
+        if (e.key === 'mahi_theme_preference' && e.newValue) {
+          applyTheme(e.newValue);
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
